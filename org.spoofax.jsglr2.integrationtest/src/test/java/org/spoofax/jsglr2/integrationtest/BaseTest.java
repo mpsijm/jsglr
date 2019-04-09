@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.metaborg.parsetable.IParseTable;
@@ -21,11 +23,14 @@ import org.spoofax.jsglr2.JSGLR2Variants;
 import org.spoofax.jsglr2.integration.IntegrationVariant;
 import org.spoofax.jsglr2.integration.ParseTableVariant;
 import org.spoofax.jsglr2.integration.WithParseTable;
+import org.spoofax.jsglr2.parseforest.IParseForest;
+import org.spoofax.jsglr2.parseforest.IParseNode;
 import org.spoofax.jsglr2.parseforest.ParseForestRepresentation;
 import org.spoofax.jsglr2.parser.IParser;
 import org.spoofax.jsglr2.parser.ParseException;
 import org.spoofax.jsglr2.parser.Position;
 import org.spoofax.jsglr2.parser.result.ParseResult;
+import org.spoofax.jsglr2.parser.result.ParseSuccess;
 import org.spoofax.jsglr2.util.AstUtilities;
 import org.spoofax.terms.TermFactory;
 import org.spoofax.terms.io.binary.TermReader;
@@ -58,11 +63,17 @@ public abstract class BaseTest implements WithParseTable {
         for(IntegrationVariant variant : IntegrationVariant.testVariants()) {
             IParseTable parseTable = getParseTableFailOnException(variant.parseTable);
             IParser<?> parser = JSGLR2Variants.getParser(parseTable, variant.parser);
-
-            ParseResult<?> parseResult = parser.parse(inputString);
-
-            assertEquals("Variant '" + variant.name() + "' failed parsing: ", true, parseResult.isSuccess);
+            testParseSuccess(inputString, "", parser, variant);
         }
+    }
+
+    private IParseForest testParseSuccess(String inputString, String filename, IParser<?> parser,
+        IntegrationVariant variant) {
+        ParseResult<?> parseResult = parser.parse(inputString, filename);
+
+        assertEquals("Variant '" + variant.name() + "' failed parsing: ", true, parseResult.isSuccess);
+
+        return ((ParseSuccess) parseResult).parseResult;
     }
 
     protected void testParseFailure(String inputString) {
@@ -227,6 +238,56 @@ public abstract class BaseTest implements WithParseTable {
 
             assertEquals("End token incorrect:", expectedEndToken, actualEndToken);
         }
+    }
+
+    protected void testSubtreeReuse(String inputString1, String inputString2, int[][] spines) {
+        for(IntegrationVariant variant : IntegrationVariant.testVariants()) {
+            if(variant.parser.parseForestRepresentation != ParseForestRepresentation.Incremental)
+                continue;
+
+            IParseTable parseTable = getParseTableFailOnException(variant.parseTable);
+            IParser<?> parser = JSGLR2Variants.getParser(parseTable, variant.parser);
+            // parser.observing().attachObserver(new org.spoofax.jsglr2.parser.observing.ParserLogObserver<>());
+
+            String filename = "" + System.nanoTime(); // To ensure the results will be cached
+            IParseForest parseForest1 = testParseSuccess(inputString1, filename, parser, variant);
+            IParseForest parseForest2 = testParseSuccess(inputString2, filename, parser, variant);
+            // printReuse(parseForest1, parseForest2);
+            for(int[] spine : spines) {
+                assertSame(Arrays.toString(spine), descendForest(parseForest1, spine),
+                    descendForest(parseForest2, spine));
+            }
+        }
+    }
+
+    private void printReuse(IParseForest parseForest1, IParseForest parseForest2) {
+        printReuse(parseForest1, parseForest2, new LinkedList<>());
+    }
+
+    private void printReuse(IParseForest parseForest1, IParseForest parseForest2, LinkedList<Integer> spine) {
+        if(parseForest1 == parseForest2) {
+            System.out.println(spine);
+            System.out.println(parseForest1);
+            return;
+        }
+        if(!(parseForest1 instanceof IParseNode) || !(parseForest2 instanceof IParseNode))
+            return;
+        IParseForest[] parseForests1 = ((IParseNode) parseForest1).getFirstDerivation().parseForests();
+        IParseForest[] parseForests2 = ((IParseNode) parseForest2).getFirstDerivation().parseForests();
+        if(parseForests1.length != parseForests2.length)
+            return;
+        for(int i = 0; i < parseForests1.length; i++) {
+            spine.add(i);
+            printReuse(parseForests1[i], parseForests2[i], spine);
+            spine.removeLast();
+        }
+    }
+
+    private IParseForest descendForest(IParseForest parseNode, int... spine) {
+        for(int i : spine) {
+            parseNode = ((IParseNode) parseNode).getFirstDerivation().parseForests()[i];
+        }
+        return parseNode;
     }
 
     protected String getFileAsString(String filename) throws IOException {

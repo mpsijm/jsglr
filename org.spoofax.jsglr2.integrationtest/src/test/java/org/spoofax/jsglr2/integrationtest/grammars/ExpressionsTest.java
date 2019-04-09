@@ -93,9 +93,19 @@ public class ExpressionsTest extends BaseTestWithSdf3ParseTables {
     }
 
     @Test public void reusingSubtreesNoLayout() {
-        testIncrementalSuccessByExpansions(new String[] { "xx+x x+x", "xy+x x+x" },
+        String[] inputStrings = { "xx+x x+x", "xy+x x+x" };
+        testIncrementalSuccessByExpansions(inputStrings,
             new String[] { "[Add(Var(\"xx\"),Var(\"x\")),Add(Var(\"x\"),Var(\"x\"))]",
                 "[Add(Var(\"xy\"),Var(\"x\")),Add(Var(\"x\"),Var(\"x\"))]" });
+
+        testSubtreeReuse(inputStrings[0], inputStrings[1], new int[][] {
+            // x+x cannot be reused, as it was parsed in multiple states
+            { 0 }, // The empty layout before the first x is reused
+            { 1, 0, 0, 0, 3 }, // The layout before the second x is reused
+            { 1, 0, 0, 0, 4 }, // The second x is reused
+            { 1, 0, 2, 3 }, // The empty layout before the last x is reused
+            { 1, 0, 2, 4 }, // The last x is reused
+        });
     }
 
     @Test public void reusingSubtreesWithLayout() {
