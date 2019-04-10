@@ -58,4 +58,16 @@ public class ExpPrioritiesTest extends BaseTestWithSdf3ParseTables {
                 "Add(Add(Mult(Term,Term),Mult(Term,Term)),Mult(Term,Term))" });
     }
 
+    @Test public void reusingSubtreesNoLayout() {
+        String[] inputStrings = { "x+x+x", "x+x*x" };
+        testIncrementalSuccessByExpansions(inputStrings,
+            new String[] { "Add(Add(Term,Term),Term)", "Add(Term,Mult(Term,Term))" });
+
+        testSubtreeReuse(inputStrings[0], inputStrings[1], new int[][] {
+            // x+x cannot be reused, as it is broken down
+            { 0 }, // The empty layout before the first x is reused
+            { 2 }, // The empty layout after the last x is reused
+        });
+    }
+
 }

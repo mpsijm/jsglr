@@ -247,7 +247,8 @@ public abstract class BaseTest implements WithParseTable {
 
             IParseTable parseTable = getParseTableFailOnException(variant.parseTable);
             IParser<?> parser = JSGLR2Variants.getParser(parseTable, variant.parser);
-            // parser.observing().attachObserver(new org.spoofax.jsglr2.parser.observing.ParserLogObserver<>());
+            // ((IObservableParser<?, ?>) parser).observing()
+            // .attachObserver(new org.spoofax.jsglr2.parser.observing.ParserLogObserver<>());
 
             String filename = "" + System.nanoTime(); // To ensure the results will be cached
             IParseForest parseForest1 = testParseSuccess(inputString1, filename, parser, variant);

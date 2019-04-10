@@ -1,0 +1,13 @@
+module exp-priorities
+
+context-free start-symbols
+	Start
+
+context-free syntax
+    Start.Left = "<" ExpL ">" "L"
+    Start.Right = "<" ExpR ">" "R"
+
+    ExpL.AddL = ExpL "+" ExpL {left}
+    ExpR.AddR = ExpR "+" ExpR {right}
+    ExpL.TermL = "x"
+    ExpR.TermR = "x"
