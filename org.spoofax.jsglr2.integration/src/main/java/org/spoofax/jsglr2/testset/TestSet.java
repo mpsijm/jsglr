@@ -33,7 +33,7 @@ public class TestSet {
 
     private static final String JAVA_8_BENCHMARK_INPUT_PATH_STRING =
         System.getProperty(String.format("%s.%s", TestSet.class.getCanonicalName(), "javaInputPath"),
-            "/Users/Jasper/git/spoofax-releng/mb-rep/org.spoofax.terms");
+            "/home/maarten/git/spoofax-releng/mb-rep/org.spoofax.terms");
 
     public static TestSet java8 = new TestSet("java", new TestSetParseTableFromATerm("Java8"),
         new TestSetMultipleInputs(JAVA_8_BENCHMARK_INPUT_PATH_STRING, "java"));

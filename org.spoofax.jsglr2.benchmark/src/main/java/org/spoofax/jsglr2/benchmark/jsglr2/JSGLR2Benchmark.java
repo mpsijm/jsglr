@@ -54,7 +54,7 @@ public abstract class JSGLR2Benchmark<Input> extends BaseBenchmark<Input> {
     @Setup public void parserSetup() throws ParseError, ParseTableReadException {
         IntegrationVariant variant = variant();
 
-        filterVariants(implode(), variant);
+        // filterVariants(implode(), variant);
 
         IStateFactory stateFactory = new StateFactory(StateFactory.defaultActionsForCharacterRepresentation,
             StateFactory.defaultProductionToGotoRepresentation);
@@ -71,6 +71,11 @@ public abstract class JSGLR2Benchmark<Input> extends BaseBenchmark<Input> {
 
         parser = JSGLR2Variants.getParser(parseTable, variant.parser);
         jsglr2 = (JSGLR2Implementation<?, ?, ?>) JSGLR2Variants.getJSGLR2(parseTable, variant.jsglr2);
+
+        postParserSetup();
+    }
+
+    protected void postParserSetup() {
     }
 
     //@formatter:off
