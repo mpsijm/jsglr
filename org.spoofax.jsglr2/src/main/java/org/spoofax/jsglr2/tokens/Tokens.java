@@ -38,7 +38,7 @@ public class Tokens implements IParseTokens {
     }
 
     public void makeStartToken() {
-        startToken = new Token(this, filename, 0, 1, 1, 0, -1, TK_RESERVED);
+        startToken = new Token(this, filename, 0, 1, 0, 0, -1, TK_RESERVED);
 
         addToken(startToken);
     }

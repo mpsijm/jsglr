@@ -14,9 +14,9 @@ public abstract class IterativeTreeTokenizer<Tree> extends TreeTokenizer<Tree> {
         tokens.makeStartToken();
         tokenTreeBinding(tokens.startToken(), rootTree.tree);
 
-        // SubTree res = tokenizeInternal(tokens, tree, new Position(0, 1, 1));
         Stack<LinkedList<TreeImploder.SubTree<Tree>>> inputStack = new Stack<>();
         Stack<Position> positionStack = new Stack<>();
+        IToken lastToken = tokens.startToken();
         Stack<LinkedList<SubTree>> outputStack = new Stack<>();
 
         inputStack.add(new LinkedList<>(Collections.singletonList(rootTree)));
@@ -36,12 +36,11 @@ public abstract class IterativeTreeTokenizer<Tree> extends TreeTokenizer<Tree> {
 
                 // Process current output in the way we're used to
                 TreeImploder.SubTree<Tree> tree = inputStack.peek().removeFirst();
-                IToken leftToken = null;
+                IToken leftToken = lastToken;
                 IToken rightToken = null;
-                Position pivotPosition = currentPos;
                 for(SubTree subTree : currentOut) {
                     // If child tree had tokens that were not yet bound, bind them
-                    if(tree.tree == null) {
+                    if(subTree.tree == null) {
                         if(subTree.leftToken != null)
                             tokenTreeBinding(subTree.leftToken, tree.tree);
 
@@ -49,34 +48,37 @@ public abstract class IterativeTreeTokenizer<Tree> extends TreeTokenizer<Tree> {
                             tokenTreeBinding(subTree.rightToken, tree.tree);
                     }
 
-                    // The left-most token of this tree is the first non-null leftToken of a subTree
-                    if(leftToken == null)
-                        leftToken = subTree.leftToken;
+                    // Set parent tree left and right token from the outermost non-layout left and right child tokens
+                    if(!subTree.isLayout) {
+                        if(leftToken == lastToken)
+                            leftToken = subTree.leftToken;
 
-                    // The right-most token of this tree is the last non-null rightToken of a subTree
-                    if(subTree.rightToken != null)
-                        rightToken = subTree.rightToken;
-
-                    // If tree production == null, that means it's an "amb" node; in that case, position is not advanced
-                    if(tree.production != null)
-                        pivotPosition = subTree.endPosition;
+                        if(subTree.rightToken != null) {
+                            rightToken = subTree.rightToken;
+                        }
+                    }
+                }
+                Position lastPosition = currentOut.getLast().endPosition;
+                // If tree production == null, that means it's an "amb" node; in that case, position is not advanced
+                if(inputStack.size() > 1 && inputStack.get(inputStack.size() - 2).peek().production != null) {
+                    positionStack.pop();
+                    positionStack.push(lastPosition);
                 }
                 // Add processed output to the list that is on top of the stack
-                positionStack.pop();
-                positionStack.push(pivotPosition);
-                outputStack.peek().add(new SubTree(tree, leftToken, rightToken, pivotPosition));
+                outputStack.peek().add(new SubTree(tree, leftToken, rightToken, lastPosition));
             } else {
                 TreeImploder.SubTree<Tree> tree = currentIn.getFirst(); // Process the next input
                 if(tree.children.size() == 0) {
-                    if(tree.width > 0) {
+                    if(tree.width > 0 || tree.production.isLexical() || tree.production.isLexicalRhs()) {
                         Position endPosition = currentPos.step(tokens.getInput(), tree.width);
                         IToken token = tokens.makeToken(currentPos, endPosition, tree.production);
                         tokenTreeBinding(token, tree.tree);
                         currentOut.add(new SubTree(tree, token, token, endPosition));
                         positionStack.pop();
                         positionStack.push(endPosition);
+                        lastToken = token;
                     } else {
-                        currentOut.add(new SubTree(tree, null, null, currentPos));
+                        currentOut.add(new SubTree(tree, lastToken, null, currentPos));
                     }
                     currentIn.removeFirst();
                 } else {
@@ -89,7 +91,7 @@ public abstract class IterativeTreeTokenizer<Tree> extends TreeTokenizer<Tree> {
 
         SubTree res = outputStack.pop().getFirst();
 
-        tokens.makeEndToken(new Position(res.endPosition.offset, res.endPosition.line, res.endPosition.column));
+        tokens.makeEndToken(res.endPosition);
         tokenTreeBinding(tokens.endToken(), res.tree);
 
         return res.tree;

@@ -296,7 +296,7 @@ public abstract class BaseTest implements WithParseTable {
                 actualTokens.add(TokenDescriptor.from(inputString, token));
             }
 
-            TokenDescriptor expectedBeginToken = new TokenDescriptor("", IToken.TK_RESERVED, 0, 1, 1);
+            TokenDescriptor expectedBeginToken = new TokenDescriptor("", IToken.TK_RESERVED, 0, 1, 0);
             TokenDescriptor actualBeginToken = actualTokens.get(0);
 
             assertEquals("Start token incorrect:", expectedBeginToken, actualBeginToken);
