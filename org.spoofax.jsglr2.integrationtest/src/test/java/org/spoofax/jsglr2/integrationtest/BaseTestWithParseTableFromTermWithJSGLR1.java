@@ -20,7 +20,8 @@ public abstract class BaseTestWithParseTableFromTermWithJSGLR1 extends BaseTestW
                 IParseTable parseTable = getParseTableFailOnException(variant.parseTable);
                 IStrategoTerm actualOutputAst = testSuccess(parseTable, variant.jsglr2, null, inputString);
 
-                assertEqualTermExpansions(expectedOutputAst, actualOutputAst);
+                assertEqualAST("Variant '" + variant.name() + "' does not have the same AST as JSGLR1",
+                    expectedOutputAst, actualOutputAst);
             }
         } catch(SGLRException | InterruptedException | InvalidParseTableException e) {
             e.printStackTrace();

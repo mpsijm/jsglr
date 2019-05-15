@@ -9,12 +9,13 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.metaborg.parsetable.IParseTable;
+import org.spoofax.interpreter.terms.IStrategoAppl;
 import org.spoofax.interpreter.terms.IStrategoTerm;
 import org.spoofax.jsglr.client.imploder.IToken;
+import org.spoofax.jsglr.client.imploder.ImploderAttachment;
 import org.spoofax.jsglr2.JSGLR2;
 import org.spoofax.jsglr2.JSGLR2Result;
 import org.spoofax.jsglr2.JSGLR2Variants;
@@ -98,9 +99,15 @@ public abstract class BaseTest implements WithParseTable {
 
     private void testSuccess(String inputString, String expectedOutputAstString, String startSymbol,
         boolean equalityByExpansions) {
+        IStrategoTerm previous = null;
         for(IntegrationVariant variant : IntegrationVariant.testVariants()) {
             IParseTable parseTable = getParseTableFailOnException(variant.parseTable);
             IStrategoTerm actualOutputAst = testSuccess(parseTable, variant.jsglr2, startSymbol, inputString);
+
+            if(previous != null)
+                assertEqualAST("Variant '" + variant.name() + "' does not have the same AST as the previous variant",
+                    previous, actualOutputAst);
+            previous = actualOutputAst;
 
             assertEqualAST("Variant '" + variant.name() + "' has incorrect AST", expectedOutputAstString,
                 actualOutputAst, equalityByExpansions);
@@ -155,6 +162,88 @@ public abstract class BaseTest implements WithParseTable {
                     expectedOutputAstStrings[i], actualOutputAst, equalityByExpansions);
             }
         }
+    }
+
+    protected void assertEqualAST(String message, IStrategoTerm expected, IStrategoTerm actual) {
+        assertEqualAST(message, expected, actual, expected, actual);
+    }
+
+    private void assertEqualAST(String message, IStrategoTerm expected, IStrategoTerm actual, IStrategoTerm e,
+        IStrategoTerm a) {
+        IStrategoTerm[] subTermsE = e.getAllSubterms();
+        IStrategoTerm[] subTermsA = a.getAllSubterms();
+        if(e.getTermType() == IStrategoTerm.APPL && ((IStrategoAppl) e).getConstructor().getName().equals("amb")
+            && a.getTermType() == IStrategoTerm.APPL && ((IStrategoAppl) a).getConstructor().getName().equals("amb")) {
+            // Check the list term that is the first argument of the amb()
+            checkSubTerms(message, expected, actual, e, a, subTermsE, subTermsA);
+            // Set the "parent" to this list term
+            e = subTermsE[0];
+            a = subTermsA[0];
+            subTermsE = e.getAllSubterms();
+            subTermsA = a.getAllSubterms();
+            // Sort the sub terms of the list term
+            Arrays.sort(subTermsE, Comparator.comparing(Object::toString));
+            Arrays.sort(subTermsA, Comparator.comparing(Object::toString));
+        }
+        checkSubTerms(message, expected, actual, e, a, subTermsE, subTermsA);
+
+
+        for(int i = 0; i < subTermsA.length; i++) {
+            assertEqualAST(message, expected, actual, subTermsE[i], subTermsA[i]);
+        }
+    }
+
+    private void checkSubTerms(String message, IStrategoTerm expected, IStrategoTerm actual, IStrategoTerm e,
+        IStrategoTerm a, IStrategoTerm[] subTermsE, IStrategoTerm[] subTermsA) {
+        if(subTermsA.length != subTermsE.length)
+            fail(message + "\nExpected: " + expected + "\n  Actual: " + actual);
+        if(!Objects.equals(e.getAnnotations(), a.getAnnotations()))
+            fail(message + "\nExpected annotations: " + e.getAnnotations() + "\n  Actual annotations: "
+                + a.getAnnotations() + "\n On tree: " + a);
+        ImploderAttachment expectedAttachment = e.getAttachment(ImploderAttachment.TYPE);
+        ImploderAttachment actualAttachment = a.getAttachment(ImploderAttachment.TYPE);
+        if(!equalAttachment(expectedAttachment, actualAttachment)) {
+            fail(message + "\nExpected attachment: " + expectedAttachment + " "
+                + (expectedAttachment == null ? "null"
+                    : printToken(expectedAttachment.getLeftToken()) + " - "
+                        + printToken(expectedAttachment.getRightToken()))
+                + "\n  Actual attachment: " + actualAttachment + " "
+                + (actualAttachment == null ? "null" : printToken(actualAttachment.getLeftToken()) + " - "
+                    + printToken(actualAttachment.getRightToken()))
+                + "\nOn tree: " + a);
+        }
+    }
+
+    private String printToken(IToken token) {
+        if(token == null)
+            return "null";
+        return "<" + token.toString() + ";" + token.getKind() + ";o:" + token.getStartOffset() + " l:" + token.getLine()
+            + " c:" + token.getColumn() + ";o:" + token.getEndOffset() + " l:" + token.getEndLine() + " c:"
+            + token.getEndColumn() + ">";
+    }
+
+    private boolean equalAttachment(ImploderAttachment expectedAttachment, ImploderAttachment actualAttachment) {
+        if(expectedAttachment == null)
+            return actualAttachment == null;
+        if(actualAttachment == null)
+            return false;
+        IToken expectedLeft = expectedAttachment.getLeftToken();
+        IToken expectedRight = expectedAttachment.getRightToken();
+        IToken actualLeft = actualAttachment.getLeftToken();
+        IToken actualRight = actualAttachment.getRightToken();
+        return Objects.equals(expectedAttachment.getSort(), actualAttachment.getSort())
+            && expectedLeft.getKind() == actualLeft.getKind() && expectedRight.getKind() == actualRight.getKind()
+            && expectedLeft.getStartOffset() == actualLeft.getStartOffset()
+            && expectedRight.getStartOffset() == actualRight.getStartOffset()
+            && expectedLeft.getEndOffset() == actualLeft.getEndOffset()
+            && expectedRight.getEndOffset() == actualRight.getEndOffset()
+            && expectedLeft.getLine() == actualLeft.getLine() && expectedRight.getLine() == actualRight.getLine()
+            && expectedLeft.getEndLine() == actualLeft.getEndLine()
+            && expectedRight.getEndLine() == actualRight.getEndLine()
+            && expectedLeft.getColumn() == actualLeft.getColumn()
+            && expectedRight.getColumn() == actualRight.getColumn()
+            && expectedLeft.getEndColumn() == actualLeft.getEndColumn()
+            && expectedRight.getEndColumn() == actualRight.getEndColumn();
     }
 
     private void assertEqualAST(String message, String expectedOutputAstString, IStrategoTerm actualOutputAst,

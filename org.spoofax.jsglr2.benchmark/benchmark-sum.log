@@ -1,0 +1,749 @@
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 4000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 0.00% complete, ETA 00:13:20
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:40:25.188 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache5276798443479403542" as temporary files store.
+15:40:25.476 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:40:25.509 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:40:25.510 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:40:25.511 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:40:25.522 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:40:25.910 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+48.253 ms/op
+# Warmup Iteration   2: 45.732 ms/op
+Iteration   1: 45.722 ms/op
+Iteration   2: 46.180 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  45.951 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 4000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 5.00% complete, ETA 00:13:56
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:41:09.275 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache6528281923424586842" as temporary files store.
+15:41:09.621 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:41:09.674 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:41:09.676 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:41:09.677 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:41:09.696 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:41:10.124 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+29.127 ms/op
+# Warmup Iteration   2: 27.584 ms/op
+Iteration   1: 27.293 ms/op
+Iteration   2: 26.562 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  26.928 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 8000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 10.00% complete, ETA 00:13:12
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:41:53.184 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache8009604814072637537" as temporary files store.
+15:41:53.510 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:41:53.554 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:41:53.555 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:41:53.557 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:41:53.572 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:41:53.966 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+93.225 ms/op
+# Warmup Iteration   2: 88.675 ms/op
+Iteration   1: 87.211 ms/op
+Iteration   2: 90.315 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  88.763 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 8000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 15.00% complete, ETA 00:12:28
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:42:37.286 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache7736420326238338230" as temporary files store.
+15:42:37.568 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:42:37.602 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:42:37.603 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:42:37.604 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:42:37.616 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:42:37.989 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+61.074 ms/op
+# Warmup Iteration   2: 56.693 ms/op
+Iteration   1: 57.612 ms/op
+Iteration   2: 56.819 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  57.215 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 16000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 20.00% complete, ETA 00:11:44
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:43:21.287 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache1227587851469435366" as temporary files store.
+15:43:21.554 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:43:21.600 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:43:21.601 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:43:21.602 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:43:21.617 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:43:22.003 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+149.733 ms/op
+# Warmup Iteration   2: 151.926 ms/op
+Iteration   1: 152.123 ms/op
+Iteration   2: 152.331 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  152.227 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 16000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 25.00% complete, ETA 00:10:59
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:44:05.147 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-7580819647850806926" as temporary files store.
+15:44:05.470 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:44:05.508 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:44:05.510 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:44:05.511 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:44:05.527 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:44:05.977 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+110.007 ms/op
+# Warmup Iteration   2: 103.583 ms/op
+Iteration   1: 98.809 ms/op
+Iteration   2: 95.593 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  97.201 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 32000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 30.00% complete, ETA 00:10:17
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:44:49.980 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache7070496354318665500" as temporary files store.
+15:44:50.349 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:44:50.399 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:44:50.400 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:44:50.401 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:44:50.417 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:44:50.871 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+273.004 ms/op
+# Warmup Iteration   2: 247.155 ms/op
+Iteration   1: 250.098 ms/op
+Iteration   2: 245.303 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  247.701 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 32000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 35.00% complete, ETA 00:09:34
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:45:34.488 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-424824385958296432" as temporary files store.
+15:45:34.762 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:45:34.800 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:45:34.801 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:45:34.802 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:45:34.815 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:45:35.196 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+209.637 ms/op
+# Warmup Iteration   2: 182.531 ms/op
+Iteration   1: 191.857 ms/op
+Iteration   2: 188.138 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  189.997 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 64000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 40.00% complete, ETA 00:08:50
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:46:18.639 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-2427767936172229198" as temporary files store.
+15:46:18.949 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:46:18.997 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:46:18.998 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:46:18.999 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:46:19.014 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:46:19.403 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+657.790 ms/op
+# Warmup Iteration   2: 531.982 ms/op
+Iteration   1: 533.670 ms/op
+Iteration   2: 524.862 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  529.266 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = CombinedRecursive, n = 64000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 45.00% complete, ETA 00:08:07
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:47:04.082 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-8983674866988285663" as temporary files store.
+15:47:04.377 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:47:04.422 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:47:04.423 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:47:04.424 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:47:04.442 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:47:04.844 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+506.664 ms/op
+# Warmup Iteration   2: 421.027 ms/op
+Iteration   1: 410.389 ms/op
+Iteration   2: 414.434 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  412.411 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 4000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 50.00% complete, ETA 00:07:24
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:47:49.203 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-734487226115131666" as temporary files store.
+15:47:49.493 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:47:49.527 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:47:49.528 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:47:49.529 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:47:49.541 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:47:49.981 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+49.372 ms/op
+# Warmup Iteration   2: 46.597 ms/op
+Iteration   1: 46.787 ms/op
+Iteration   2: 46.554 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  46.670 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 4000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 55.00% complete, ETA 00:06:39
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:48:33.090 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache7925767205793995521" as temporary files store.
+15:48:33.377 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:48:33.434 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:48:33.436 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:48:33.437 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:48:33.452 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:48:33.895 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+35.820 ms/op
+# Warmup Iteration   2: 32.383 ms/op
+Iteration   1: 32.072 ms/op
+Iteration   2: 31.084 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  31.578 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 8000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 60.00% complete, ETA 00:05:54
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:49:16.957 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache4666527293062953438" as temporary files store.
+15:49:17.239 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:49:17.286 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:49:17.287 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:49:17.288 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:49:17.304 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:49:17.681 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+117.618 ms/op
+# Warmup Iteration   2: 108.274 ms/op
+Iteration   1: 113.965 ms/op
+Iteration   2: 109.372 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  111.669 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 8000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 65.00% complete, ETA 00:05:10
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:50:00.815 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-6092836995850894895" as temporary files store.
+15:50:01.184 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:50:01.224 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:50:01.225 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:50:01.226 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:50:01.241 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:50:01.646 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+72.636 ms/op
+# Warmup Iteration   2: 68.660 ms/op
+Iteration   1: 68.821 ms/op
+Iteration   2: 69.782 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  69.302 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 16000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 70.00% complete, ETA 00:04:25
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:50:44.948 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-1262523405848304069" as temporary files store.
+15:50:45.255 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:50:45.300 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:50:45.301 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:50:45.302 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:50:45.314 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:50:45.729 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+235.819 ms/op
+# Warmup Iteration   2: 223.221 ms/op
+Iteration   1: 230.200 ms/op
+Iteration   2: 225.845 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  228.022 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 16000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 75.00% complete, ETA 00:03:41
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:51:29.295 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache6781936976176302065" as temporary files store.
+15:51:29.625 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:51:29.679 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:51:29.680 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:51:29.681 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:51:29.699 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:51:30.115 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+143.807 ms/op
+# Warmup Iteration   2: 132.295 ms/op
+Iteration   1: 132.750 ms/op
+Iteration   2: 129.665 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  131.207 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 32000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 80.00% complete, ETA 00:02:57
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:52:13.528 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-8529583506015569679" as temporary files store.
+15:52:13.826 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:52:13.861 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:52:13.862 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:52:13.863 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:52:13.875 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:52:14.261 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+362.814 ms/op
+# Warmup Iteration   2: 306.035 ms/op
+Iteration   1: 316.209 ms/op
+Iteration   2: 305.888 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  311.048 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 32000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 85.00% complete, ETA 00:02:12
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:52:57.672 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-7076369938416842648" as temporary files store.
+15:52:57.956 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:52:57.998 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:52:57.999 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:52:58.000 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:52:58.014 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:52:58.398 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+298.985 ms/op
+# Warmup Iteration   2: 254.887 ms/op
+Iteration   1: 252.142 ms/op
+Iteration   2: 250.541 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  251.342 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 64000, parseForestConstruction = Full, parseForestRepresentation = Hybrid, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 90.00% complete, ETA 00:01:28
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:53:41.815 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache-896678031237878763" as temporary files store.
+15:53:42.098 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:53:42.135 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:53:42.136 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:53:42.137 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:53:42.149 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:53:42.517 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+1008.152 ms/op
+# Warmup Iteration   2: 776.901 ms/op
+Iteration   1: 786.826 ms/op
+Iteration   2: 796.282 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  791.554 ms/op
+
+
+# JMH version: 1.21
+# VM version: JDK 11.0.2, OpenJDK 64-Bit Server VM, 11.0.2+9-Ubuntu-3ubuntu118.04.3
+# VM invoker: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# VM options: -Xmx2048m -Xss512m
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark
+# Parameters: (actionsForCharacterRepresentation = DisjointSorted, activeStacksRepresentation = ArrayList, forActorStacksRepresentation = ArrayDeque, implode = true, imploder = SeparateRecursiveIncremental, n = 64000, parseForestConstruction = Full, parseForestRepresentation = Incremental, productionToGotoRepresentation = JavaHashMap, reducing = Basic, stackRepresentation = Hybrid)
+
+# Run progress: 95.00% complete, ETA 00:00:44
+# Fork: 1 of 1
+# Warmup Iteration   1: WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/org.spoofax.jsglr2.benchmark.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:54:26.569 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.a.c.v.i.DefaultFileSystemManager - Using "/tmp/vfs_cache1929898178563612906" as temporary files store.
+15:54:26.843 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.l.LanguageComponentFactory - Creating language component for zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:54:26.885 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language TemplateLang
+15:54:26.886 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language impl. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT
+15:54:26.887 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.core.language.LanguageService - Adding language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+15:54:26.904 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG org.metaborg.meta.core.MetaBorgMeta - Closing the MetaBorg meta API
+15:54:27.430 [org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark-jmh-worker-1] DEBUG o.m.s.c.s.StrategoRuntimeService - Creating prototype runtime for language comp. org.metaborg:org.metaborg.meta.lang.template:2.6.0-SNAPSHOT@zip:file:///home/maarten/git/spoofax-releng/jsglr/org.spoofax.jsglr2.benchmark/target/classes/sdf3.spoofax-language!/
+735.147 ms/op
+# Warmup Iteration   2: 582.952 ms/op
+Iteration   1: 637.058 ms/op
+Iteration   2: 617.532 ms/op
+
+
+Result "org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark":
+  627.295 ms/op
+
+
+# Run complete. Total time: 00:14:46
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                                               (actionsForCharacterRepresentation)  (activeStacksRepresentation)  (forActorStacksRepresentation)  (implode)                    (imploder)    (n)  (parseForestConstruction)  (parseForestRepresentation)  (productionToGotoRepresentation)  (reducing)  (stackRepresentation)  Mode  Cnt    Score   Error  Units
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive   4000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2   45.951          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive   4000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2   26.928          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive   8000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2   88.763          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive   8000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2   57.215          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  16000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  152.227          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  16000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2   97.201          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  32000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  247.701          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  32000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2  189.997          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  64000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  529.266          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true             CombinedRecursive  64000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2  412.411          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental   4000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2   46.670          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental   4000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2   31.578          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental   8000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  111.669          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental   8000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2   69.302          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  16000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  228.022          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  16000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2  131.207          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  32000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  311.048          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  32000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2  251.342          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  64000                       Full                       Hybrid                       JavaHashMap       Basic                 Hybrid  avgt    2  791.554          ms/op
+JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding.benchmark                       DisjointSorted                     ArrayList                      ArrayDeque       true  SeparateRecursiveIncremental  64000                       Full                  Incremental                       JavaHashMap       Basic                 Hybrid  avgt    2  627.295          ms/op
