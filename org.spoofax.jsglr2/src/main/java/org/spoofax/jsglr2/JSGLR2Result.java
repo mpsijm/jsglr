@@ -1,12 +1,12 @@
 package org.spoofax.jsglr2;
 
+import org.spoofax.jsglr.client.imploder.ITokens;
 import org.spoofax.jsglr2.imploder.TokenizeResult;
-import org.spoofax.jsglr2.tokens.Tokens;
 
 public final class JSGLR2Result<AbstractSyntaxTree> {
 
     public final boolean isSuccess;
-    public final Tokens tokens;
+    public final ITokens tokens;
     public final AbstractSyntaxTree ast;
 
     /**

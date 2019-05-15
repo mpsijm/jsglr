@@ -2,6 +2,7 @@ package org.spoofax.jsglr.client.imploder;
 
 import java.io.Serializable;
 
+import org.metaborg.parsetable.IProduction;
 import org.spoofax.interpreter.terms.ISimpleTerm;
 
 /**
@@ -92,4 +93,22 @@ public interface IToken extends Comparable<IToken>, Serializable {
 	ITokens getTokenizer();
 	
 	IToken clone();
+
+	static int getTokenKind(IProduction production) {
+		int tokenKind;
+		if(production.isLayout()) {
+			tokenKind = TK_LAYOUT;
+		} else if(production.isStringLiteral()) {
+			tokenKind = TK_STRING;
+		} else if(production.isNumberLiteral()) {
+			tokenKind = TK_NUMBER;
+		} else if(production.isOperator()) {
+			tokenKind = TK_OPERATOR;
+		} else if(production.isLexical()) {
+			tokenKind = TK_IDENTIFIER;
+		} else {
+			tokenKind = TK_KEYWORD;
+		}
+		return tokenKind;
+	}
 }

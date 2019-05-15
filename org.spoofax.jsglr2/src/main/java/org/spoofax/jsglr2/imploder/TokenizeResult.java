@@ -1,13 +1,13 @@
 package org.spoofax.jsglr2.imploder;
 
-import org.spoofax.jsglr2.tokens.Tokens;
+import org.spoofax.jsglr.client.imploder.ITokens;
 
 public class TokenizeResult<AbstractSyntaxTree> {
 
-    public final Tokens tokens;
+    public final ITokens tokens;
     public final AbstractSyntaxTree ast;
 
-    public TokenizeResult(Tokens tokens, AbstractSyntaxTree ast) {
+    public TokenizeResult(ITokens tokens, AbstractSyntaxTree ast) {
         this.tokens = tokens;
         this.ast = ast;
     }

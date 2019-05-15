@@ -32,6 +32,7 @@ import org.spoofax.jsglr2.stack.collections.ForActorStacksRepresentation;
 import org.spoofax.jsglr2.stack.hybrid.HybridStackManager;
 import org.spoofax.jsglr2.tokens.NullTokenizer;
 import org.spoofax.jsglr2.tokens.TokenizerVariant;
+import org.spoofax.jsglr2.tokens.TreeTokens;
 
 public class JSGLR2Variants {
 
@@ -295,6 +296,8 @@ public class JSGLR2Variants {
                 return new StrategoTermTokenizer();
             case Iterative:
                 return new IterativeStrategoTermTokenizer();
+            case TreeShaped:
+                return new TreeTokens.Tokenizer();
         }
     }
 

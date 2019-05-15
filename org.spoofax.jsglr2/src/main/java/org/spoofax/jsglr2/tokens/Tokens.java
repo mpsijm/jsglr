@@ -51,36 +51,16 @@ public class Tokens implements IParseTokens {
     }
 
     public IToken makeToken(Position startPosition, Position endPosition, IProduction production) {
-        int tokenKind;
-
-        if(production.isLayout()) {
-            tokenKind = IToken.TK_LAYOUT;
-        } else if(production.isStringLiteral()) {
-            tokenKind = IToken.TK_STRING;
-        } else if(production.isNumberLiteral()) {
-            tokenKind = IToken.TK_NUMBER;
-        } else if(production.isOperator()) {
-            tokenKind = IToken.TK_OPERATOR;
-        } else if(production.isLexical()) {
-            tokenKind = IToken.TK_IDENTIFIER;
-        } else {
-            tokenKind = IToken.TK_KEYWORD;
-        }
-
         IToken token = new Token(this, filename, tokens.size(), startPosition.line, startPosition.column,
-            startPosition.offset, endPosition.offset - 1, tokenKind);
+            startPosition.offset, endPosition.offset - 1, IToken.getTokenKind(production));
 
         addToken(token);
 
         return token;
     }
 
-    public int addToken(IToken token) {
-        int index = tokens.size();
-
+    public void addToken(IToken token) {
         tokens.add(token);
-
-        return index;
     }
 
     @Override public Iterator<IToken> iterator() {
