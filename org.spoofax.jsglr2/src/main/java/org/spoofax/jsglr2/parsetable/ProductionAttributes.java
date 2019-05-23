@@ -20,11 +20,12 @@ public class ProductionAttributes {
     public final boolean isCaseInsensitive;
     public final boolean isIndentPaddingLexical;
     public final boolean isFlatten;
+    public final boolean isFragile;
 
     ProductionAttributes(ProductionType type, IStrategoTerm constructorTerm, boolean isRecover, boolean isBracket,
         boolean isCompletion, boolean isPlaceholderInsertion, boolean isLiteralCompletion, boolean isIgnoreIndent,
         boolean isNewlineEnforced, boolean isLongestMatch, boolean isCaseInsensitive, boolean isIndentPaddingLexical,
-        boolean isFlatten) {
+        boolean isFlatten, boolean isFragile) {
         this.type = type;
         this.constructorTerm = constructorTerm;
         this.constructor = constructorTerm == null ? null : ((IStrategoNamed) constructorTerm).getName();
@@ -39,6 +40,7 @@ public class ProductionAttributes {
         this.isCaseInsensitive = isCaseInsensitive;
         this.isIndentPaddingLexical = isIndentPaddingLexical;
         this.isFlatten = isFlatten;
+        this.isFragile = isFragile;
     }
 
     public boolean isCompletionOrRecovery() {

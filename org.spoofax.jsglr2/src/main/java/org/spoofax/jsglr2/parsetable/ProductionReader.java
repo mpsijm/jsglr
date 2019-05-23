@@ -20,8 +20,8 @@ public class ProductionReader {
         IStrategoList rhs = termAt(productionTerm, 0);
         IStrategoAppl attributesTerm = termAt(productionTerm, 2);
 
-        ProductionAttributes attributes = readProductionAttributes(attributesTerm); // Attributes stored in a separate
-        // term
+        // Attributes stored in a separate term
+        ProductionAttributes attributes = readProductionAttributes(attributesTerm);
 
         String sort = getSort(lhs);
         String startSymbolSort = getStartSymbolSort(lhs, rhs);
@@ -36,6 +36,7 @@ public class ProductionReader {
         boolean isStringLiteral = getIsStringLiteral(rhs);
         boolean isNumberLiteral = getIsNumberLiteral(rhs);
         boolean isOperator = getIsOperator(lhs, isLiteral);
+        boolean isFragile = attributes.isFragile;
 
         boolean skippableLayout = isLayout && !isLayoutParent;
         boolean skippableLexical = sort == null && (isLexical || (isLexicalRhs && !isLiteral));
@@ -46,7 +47,7 @@ public class ProductionReader {
 
         return new Production(productionId, sort, startSymbolSort, descriptor, isContextFree, isLayout, isLiteral,
             isLexical, isLexicalRhs, isSkippableInParseForest, isList, isOptional, isStringLiteral, isNumberLiteral,
-            isOperator, attributes);
+            isOperator, isFragile, attributes);
     }
 
     private static String getSort(IStrategoAppl lhs) {
@@ -298,6 +299,7 @@ public class ProductionReader {
             boolean isCaseInsensitive = false;
             boolean isIndentPaddingLexical = false;
             boolean isFlatten = false;
+            boolean isFragile = false;
 
             IStrategoList attributesTermsList = (IStrategoList) attributesTerm.getSubterm(0);
 
@@ -322,6 +324,9 @@ public class ProductionReader {
                     case "assoc":
                         // This attribute is used to indicate left/right/assoc associativity. Since this is irrelevant
                         // during parsing/imploding we ignore it here.
+                        break;
+                    case "fragile":
+                        isFragile = true;
                         break;
                     case "term":
                         if(attributeTermNamed.getSubterm(0) instanceof IStrategoNamed) {
@@ -382,10 +387,10 @@ public class ProductionReader {
 
             return new ProductionAttributes(type, constructor, isRecover, isBracket, isCompletion,
                 isPlaceholderInsertion, isLiteralCompletion, isIgnoreLayout, isNewlineEnforced, isLongestMatch,
-                isCaseInsensitive, isIndentPaddingLexical, isFlatten);
+                isCaseInsensitive, isIndentPaddingLexical, isFlatten, isFragile);
         } else if(attributesTerm.getName().equals("no-attrs")) {
             return new ProductionAttributes(ProductionType.NO_TYPE, null, false, false, false, false, false, false,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
         }
 
         throw new ParseTableReadException("Unknown production attribute type: " + attributesTerm);

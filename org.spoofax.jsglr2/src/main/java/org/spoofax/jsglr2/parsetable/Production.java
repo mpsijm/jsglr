@@ -20,12 +20,13 @@ public class Production implements IProduction {
     private final boolean isStringLiteral;
     private final boolean isNumberLiteral;
     private final boolean isOperator;
+    private final boolean isFragile;
     private final ProductionAttributes attributes;
 
     public Production(int productionId, String sort, String startSymbolSort, String descriptor, Boolean isContextFree,
         Boolean isLayout, Boolean isLiteral, Boolean isLexical, Boolean isLexicalRhs, Boolean isSkippableInParseForest,
         Boolean isList, Boolean isOptional, Boolean isStringLiteral, Boolean isNumberLiteral, Boolean isOperator,
-        ProductionAttributes attributes) {
+        boolean isFragile, ProductionAttributes attributes) {
         this.productionId = productionId;
         this.sort = sort;
         this.startSymbolSort = startSymbolSort;
@@ -41,6 +42,7 @@ public class Production implements IProduction {
         this.isStringLiteral = isStringLiteral;
         this.isNumberLiteral = isNumberLiteral;
         this.isOperator = isOperator;
+        this.isFragile = isFragile;
         this.attributes = attributes;
     }
 
@@ -158,4 +160,7 @@ public class Production implements IProduction {
         return attributes.isLongestMatch;
     }
 
+    @Override public boolean isFragile() {
+        return isFragile;
+    }
 }
