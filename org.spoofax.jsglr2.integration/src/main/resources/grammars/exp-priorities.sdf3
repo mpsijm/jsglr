@@ -3,10 +3,11 @@ module exp-priorities
 context-free start-symbols
 	Exp
 
-context-free syntax
-    Exp.Add = Exp "+" Exp {left}
-    Exp.Mult = Exp "*" Exp {left}
-    Exp.Term = "x"
+syntax
+    Exp-CF.Add = Exp-CF "+" Exp-CF {left}
+    Exp-CF.Mult = Exp-CF "*" Exp-CF {left}
+    Exp-CF.Term = "x"
+    Exp-CF.Term = "y"
 
 context-free priorities
 

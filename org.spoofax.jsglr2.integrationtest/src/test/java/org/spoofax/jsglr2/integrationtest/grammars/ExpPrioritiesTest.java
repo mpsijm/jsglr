@@ -39,10 +39,18 @@ public class ExpPrioritiesTest extends BaseTestWithSdf3ParseTables {
     }
 
     @Test public void changingPriorities() {
-        testIncrementalSuccessByExpansions(new String[] { "x+x+x", "x*x+x", "x*x*x", "x+x*x", "x+x+x" },
-            new String[] { "Add(Add(Term(),Term()),Term())", "Add(Mult(Term(),Term()),Term())",
+        // @formatter:off
+        testIncrementalSuccessByExpansions(
+            new String[] {
+                "x+x+x", "x*x+x", "x*x*x", "x+x*x",
+                "x+x+x", "x+x*x", "x*x*x", "x*x+x", "x+x+x" },
+            new String[] {
+                "Add(Add(Term(),Term()),Term())",   "Add(Mult(Term(),Term()),Term())",
                 "Mult(Mult(Term(),Term()),Term())", "Add(Term(),Mult(Term(),Term()))",
+                "Add(Add(Term(),Term()),Term())",   "Add(Term(),Mult(Term(),Term()))",
+                "Mult(Mult(Term(),Term()),Term())", "Add(Mult(Term(),Term()),Term())",
                 "Add(Add(Term(),Term()),Term())" });
+        // @formatter:on
     }
 
     @Test public void largerPrioritiesTest() {
