@@ -47,10 +47,23 @@ public class EagerLookaheadStack implements ILookaheadStack {
         for(int i = children.length - 1; i >= 0; i--) {
             stack.push(children[i]);
         }
+        if(isFragile())
+            leftBreakdown();
     }
 
     @Override public void popLookahead() {
         position += stack.pop().width();
+        if(isFragile())
+            leftBreakdown();
+    }
+
+    // TODO move to IncrementalParseForest
+    private boolean isFragile() {
+        IncrementalParseForest top = stack.peek();
+        if(top.isTerminal())
+            return false;
+        IncrementalParseNode node = (IncrementalParseNode) top;
+        return node.production() != null && node.production().isFragile();
     }
 
     @Override public int actionQueryCharacter() {
