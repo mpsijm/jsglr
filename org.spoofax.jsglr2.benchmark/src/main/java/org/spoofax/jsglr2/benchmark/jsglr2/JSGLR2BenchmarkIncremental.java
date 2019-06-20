@@ -87,4 +87,9 @@ public abstract class JSGLR2BenchmarkIncremental extends JSGLR2Benchmark<String[
         }
     }
 
+    // Only here for ManualBenchmark
+    public Iterable<IncrementalStringInput> getInputs() {
+        return inputs;
+    }
+
 }

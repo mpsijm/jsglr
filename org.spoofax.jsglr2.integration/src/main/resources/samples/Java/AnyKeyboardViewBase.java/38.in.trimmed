@@ -1,0 +1,12 @@
+public class Test {
+
+    boolean test() {
+        if (foo) {
+            return true;
+        } else if (bonk) {
+            return true;
+        }
+        return false;
+    }
+
+}

@@ -1,0 +1,13 @@
+public class IncrementalParser {
+
+    private List getActions() {
+        if(production == null)
+            return emptyList;
+        LinkedList<IAction> actions = new LinkedList<>();
+        if(apple == pear) {
+            actions.add(ball);
+        }
+        return actions;
+    }
+
+}

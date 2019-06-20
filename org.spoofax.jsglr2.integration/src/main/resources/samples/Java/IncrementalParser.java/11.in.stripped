@@ -1,0 +1,13 @@
+public class IncrementalParser {
+
+    private List getActions() {
+        try {
+            if(apple == pear)
+                return singletonList(ball);
+            return emptyList;
+        } catch(NullPointerException e) {
+            return emptyList;
+        }
+    }
+
+}

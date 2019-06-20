@@ -103,6 +103,11 @@ public class IncrementalParseNode extends IncrementalParseForest
         otherDerivations = null;
     }
 
+    // TODO only here for ManualBenchmark
+    public IState state() {
+        return state;
+    }
+
     @Override protected void prettyPrint(TreePrettyPrinter printer) {
         if(production == null)
             printer.println("p null {");

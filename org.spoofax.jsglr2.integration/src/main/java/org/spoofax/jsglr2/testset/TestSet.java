@@ -98,6 +98,10 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
         new TestSetWithParseTable<>("sumNonAmbiguousIncremental", new TestSetParseTableFromSDF3("sum-nonambiguous"),
             new TestSetSizedInput.IncrementalStringInputSet(
                 n -> new String[] { String.join("+", Collections.nCopies(n, "x")),
+                    String.join("+", Collections.nCopies(n + 1, "x")), String.join("+", Collections.nCopies(n, "x")),
+                    String.join("+", Collections.nCopies(n + 1, "x")), String.join("+", Collections.nCopies(n, "x")),
+                    String.join("+", Collections.nCopies(n + 1, "x")), String.join("+", Collections.nCopies(n, "x")),
+                    String.join("+", Collections.nCopies(n + 1, "x")), String.join("+", Collections.nCopies(n, "x")),
                     String.join("+", Collections.nCopies(n + 1, "x")), String.join("+", Collections.nCopies(n, "x")) },
                 4000, 8000, 16000, 32000, 64000));
 
@@ -124,7 +128,7 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
 
     public static TestSetWithParseTable<String[], IncrementalStringInput> java8Incremental =
         new TestSetWithParseTable<>("java8Incremental", JAVA_8_PARSE_TABLE,
-            new TestSetIncrementalInput("Java/AnyKeyboardViewBase.java/", true));
+            new TestSetIncrementalInput("Java/AnyKeyboardViewBase.java/", true)); // "Java/TLRPC.java/"));
 
     public static final TestSetWithParseTable<String[], IncrementalStringInput> java8IncrementalGit =
         new TestSetWithParseTable<>("java8Incremental", JAVA_8_PARSE_TABLE,
@@ -132,7 +136,7 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
 
 
     public static final TestSetWithParseTable<String[], IncrementalStringInput> ocamlIncrementalGit =
-        new TestSetWithParseTable<>("OCaml-incremental-git", new TestSetParseTableFromATerm("OCaml", true),
+        new TestSetWithParseTable<>("OCaml-incremental-git", new TestSetParseTableFromATerm("OCaml5", true),
             new TestSetIncrementalGitInput("/home/maarten/git/tmp/google-drive-ocamlfuse", "ml", 50));
 
 

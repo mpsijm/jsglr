@@ -12,7 +12,7 @@ mvn -f ../org.spoofax.jsglr2.integration/pom.xml clean install
 mvn clean install
 
 timestamp=$(date +%F-%T)
-jargs="-Xmx2048m -Xss2000000k -jar target/org.spoofax.jsglr2.benchmark.jar -wi 20 -i 20 -f 1"
+jargs="-Xmx2048m -Xss2000000k -jar target/org.spoofax.jsglr2.benchmark.jar -wi 2 -i 2 -f 1"
 export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin/:$PATH
 mkdir -p tmp
 

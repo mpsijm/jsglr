@@ -1,0 +1,11 @@
+public class Test {
+
+    boolean test() {
+        if (foo) {
+            return true;
+        } else {
+            return bonk;
+        }
+    }
+
+}
