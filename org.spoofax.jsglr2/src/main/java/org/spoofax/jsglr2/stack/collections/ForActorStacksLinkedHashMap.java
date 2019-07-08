@@ -75,4 +75,8 @@ public class ForActorStacksLinkedHashMap<ParseForest extends IParseForest, Stack
         };
     }
 
+    @Override public String toString() {
+        return forActor.keySet().toString();
+    }
+
 }

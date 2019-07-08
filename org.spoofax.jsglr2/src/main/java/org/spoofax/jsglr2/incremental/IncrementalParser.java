@@ -1,6 +1,8 @@
 package org.spoofax.jsglr2.incremental;
 
+import static com.google.common.collect.Iterables.isEmpty;
 import static com.google.common.collect.Iterables.size;
+import static java.util.Arrays.asList;
 import static org.metaborg.util.iterators.Iterables2.stream;
 import static org.spoofax.jsglr2.incremental.IncrementalParse.NO_STATE;
 
@@ -16,6 +18,7 @@ import org.metaborg.parsetable.actions.IReduce;
 import org.spoofax.jsglr2.incremental.actions.GotoShift;
 import org.spoofax.jsglr2.incremental.diff.IStringDiff;
 import org.spoofax.jsglr2.incremental.diff.JGitHistogramDiff;
+import org.spoofax.jsglr2.incremental.lookaheadstack.AbstractLookaheadStack;
 import org.spoofax.jsglr2.incremental.lookaheadstack.ILookaheadStack;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalDerivation;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalParseForest;
@@ -27,6 +30,7 @@ import org.spoofax.jsglr2.parser.result.ParseSuccess;
 import org.spoofax.jsglr2.reducing.ReduceManagerFactory;
 import org.spoofax.jsglr2.stack.AbstractStackManager;
 import org.spoofax.jsglr2.stack.IStackNode;
+import org.spoofax.jsglr2.stack.paths.StackPath;
 
 public class IncrementalParser
 // @formatter:off
@@ -98,11 +102,54 @@ public class IncrementalParser
         return ((IncrementalParseNode) lookahead.get()).getFirstDerivation().state.equals(NO_STATE);
     }
 
+    private class LookaheadPastLayout extends AbstractLookaheadStack {
+        public LookaheadPastLayout(Parse parse) {
+            super(parse.inputString);
+            this.position = parse.currentOffset;
+
+            List<Character> layout = asList(' ', '\t', '\r', '\n'); // TODO this should come from the parse table
+            while(position < inputLength && layout.contains(inputString.charAt(position)))
+                position++;
+        }
+
+        @Override public void leftBreakdown() {
+        }
+
+        @Override public void popLookahead() {
+        }
+
+        @Override public IncrementalParseForest get() {
+            return null;
+        }
+    }
+
     // Inside this method, we can assume that the lookahead is a valid and complete subtree of the previous parse.
     // Else, the loop in `actor` will have broken it down
     private Iterable<IAction> getActions(StackNode stack, Parse parse) {
         // Get actions based on the lookahead terminal that `parse` will calculate in actionQueryCharacter
         Iterable<IAction> actions = stack.state().getApplicableActions(parse);
+        // actions = stream(actions).collect(Collectors.toList());
+        actions = stream(actions).filter(a -> {
+            try {
+                if(!(a instanceof IReduce))
+                    return true;
+                IReduce r = (IReduce) a;
+                if(!r.production().isLayout())
+                    return true;
+                if(r.arity() == 0)
+                    return !isEmpty(
+                        parseTable.getState(stack.state().getGotoId(r.production().id())).getApplicableActions(parse));
+                List<StackPath<IncrementalParseForest, StackNode>> paths =
+                    stackManager.findAllPathsOfLength(stack, r.arity());
+                if(paths.size() != 1)
+                    return true;
+                boolean b = !isEmpty(parseTable.getState(paths.get(0).head().state().getGotoId(r.production().id()))
+                    .getApplicableActions(new LookaheadPastLayout(parse)));
+                return b;
+            } catch(NullPointerException e) {
+                return true;
+            }
+        }).collect(Collectors.toList());
 
         IncrementalParseForest lookahead = parse.lookahead.get();
         if(lookahead.isTerminal()) {
