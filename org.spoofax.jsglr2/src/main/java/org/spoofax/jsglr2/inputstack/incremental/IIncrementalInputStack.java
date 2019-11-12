@@ -8,8 +8,6 @@ public interface IIncrementalInputStack extends IInputStack {
 
     void leftBreakdown();
 
-    IIncrementalInputStack clone();
-
     default boolean hasNext() {
         return getNode() != null; // null is the lookahead of the EOF node
     }

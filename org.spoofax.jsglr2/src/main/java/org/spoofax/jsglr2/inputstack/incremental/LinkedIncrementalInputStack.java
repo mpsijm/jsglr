@@ -2,6 +2,7 @@ package org.spoofax.jsglr2.inputstack.incremental;
 
 import static org.spoofax.jsglr2.incremental.parseforest.IncrementalCharacterNode.EOF_NODE;
 
+import org.spoofax.jsglr2.incremental.parseforest.IncrementalCharacterNode;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalParseForest;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalParseNode;
 
@@ -25,11 +26,11 @@ public class LinkedIncrementalInputStack extends AbstractInputStack implements I
         return head == null ? null : head.node;
     }
 
-    @Override public LinkedIncrementalInputStack clone() {
-        LinkedIncrementalInputStack clone = new LinkedIncrementalInputStack(EOF_NODE, inputString, fileName);
-        clone.head = head;
-        clone.currentOffset = currentOffset;
-        return clone;
+    @Override public void resetOffset(int offset) {
+        for(int i = currentOffset - 1; i >= offset; i--) {
+            head = new StackTuple(new IncrementalCharacterNode(inputString.charAt(i)), head);
+        }
+        currentOffset = offset;
     }
 
     @Override public void leftBreakdown() {

@@ -41,8 +41,8 @@ public class RecoveryParserObserver
         int currentOffset = parseState.inputStack.offset();
         if((currentOffset == 0 || CharacterClassFactory.isNewLine(parseState.inputStack.getChar(currentOffset - 1)))
             && (!parseState.isRecovering()
-                || parseState.lastBacktrackChoicePoint().inputStack().offset() < currentOffset)) {
-            IBacktrackChoicePoint<?, StackNode> choicePoint = parseState.saveBacktrackChoicePoint();
+                || parseState.lastBacktrackChoicePoint().offset() < currentOffset)) {
+            IBacktrackChoicePoint<StackNode> choicePoint = parseState.saveBacktrackChoicePoint();
 
             observing.notify(observer -> observer
                 .recoveryBacktrackChoicePoint(parseState.backtrackChoicePoints().size() - 1, choicePoint));
@@ -126,7 +126,7 @@ public class RecoveryParserObserver
     @Override public void shifter(ParseForest termNode, Queue<ForShifterElement<StackNode>> forShifter) {
     }
 
-    @Override public void recoveryBacktrackChoicePoint(int index, IBacktrackChoicePoint<?, StackNode> choicePoint) {
+    @Override public void recoveryBacktrackChoicePoint(int index, IBacktrackChoicePoint<StackNode> choicePoint) {
     }
 
     @Override public void startRecovery(ParseState parseState) {

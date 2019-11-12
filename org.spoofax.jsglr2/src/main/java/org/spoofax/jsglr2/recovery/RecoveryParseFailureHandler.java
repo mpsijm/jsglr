@@ -18,7 +18,7 @@ public class RecoveryParseFailureHandler
     ParseNode            extends IParseNode<ParseForest, Derivation>,
     StackNode            extends IStackNode,
     InputStack           extends IInputStack,
-    BacktrackChoicePoint extends IBacktrackChoicePoint<InputStack, StackNode>,
+    BacktrackChoicePoint extends IBacktrackChoicePoint<StackNode>,
     ParseState           extends AbstractParseState<InputStack, StackNode> & IRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint>>
 //@formatter:on
     implements IParseFailureHandler<ParseForest, StackNode, ParseState> {
@@ -30,7 +30,7 @@ public class RecoveryParseFailureHandler
     ParseNode_            extends IParseNode<ParseForest_, Derivation_>,
     StackNode_            extends IStackNode,
     InputStack_           extends IInputStack,
-    BacktrackChoicePoint_ extends IBacktrackChoicePoint<InputStack_, StackNode_>,
+    BacktrackChoicePoint_ extends IBacktrackChoicePoint<StackNode_>,
     ParseState_           extends AbstractParseState<InputStack_, StackNode_> & IRecoveryParseState<InputStack_, StackNode_, BacktrackChoicePoint_>>
 //@formatter:on
     ParseFailureHandlerFactory<ParseForest_, Derivation_, ParseNode_, StackNode_, ParseState_> factory() {

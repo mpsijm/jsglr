@@ -33,15 +33,14 @@ public class LazyIncrementalInputStack extends AbstractInputStack implements IIn
         this(root, root.getYield(), "");
     }
 
-    @Override public LazyIncrementalInputStack clone() {
-        LazyIncrementalInputStack clone = new LazyIncrementalInputStack(EOF_NODE, inputString, fileName);
-        clone.stack.clear();
-        for(StackTuple stackTuple : stack) {
-            clone.stack.push(stackTuple);
+    @Override public void resetOffset(int offset) {
+        IncrementalParseForest[] children = new IncrementalParseForest[currentOffset - offset];
+        for(int i = offset; i < currentOffset; i++) {
+            children[i - offset] = new IncrementalCharacterNode(inputString.charAt(i));
         }
-        clone.last = last;
-        clone.currentOffset = currentOffset;
-        return clone;
+        stack.push(new StackTuple(new IncrementalParseNode(children), 0));
+        currentOffset = offset;
+        last = children[0];
     }
 
     @Override public IncrementalParseForest getNode() {

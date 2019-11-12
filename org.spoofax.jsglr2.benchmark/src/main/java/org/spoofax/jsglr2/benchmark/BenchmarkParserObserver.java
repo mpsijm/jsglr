@@ -111,7 +111,7 @@ public class BenchmarkParserObserver
     }
 
     @Override public void recoveryBacktrackChoicePoint(int index,
-        IBacktrackChoicePoint<?, StackNode> backtrackChoicePoint) {
+        IBacktrackChoicePoint<StackNode> backtrackChoicePoint) {
     }
 
     @Override public void startRecovery(ParseState parseState) {

@@ -17,5 +17,7 @@ public interface IInputStack extends IActionQuery {
 
     int offset();
 
-    IInputStack clone();
+    // This is an optimization over cloning the entire input stack
+    // because the parse nodes in the the part of the input being recovered need to be broken down anyway.
+    void resetOffset(int offset);
 }

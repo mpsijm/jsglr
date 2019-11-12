@@ -4,6 +4,7 @@ import static org.spoofax.jsglr2.incremental.parseforest.IncrementalCharacterNod
 
 import java.util.Stack;
 
+import org.spoofax.jsglr2.incremental.parseforest.IncrementalCharacterNode;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalParseForest;
 import org.spoofax.jsglr2.incremental.parseforest.IncrementalParseNode;
 
@@ -28,14 +29,11 @@ public class EagerIncrementalInputStack extends AbstractInputStack implements II
         this(root, root.getYield(), "");
     }
 
-    @Override public EagerIncrementalInputStack clone() {
-        EagerIncrementalInputStack clone = new EagerIncrementalInputStack(EOF_NODE, inputString, fileName);
-        clone.stack.clear();
-        for(IncrementalParseForest node : stack) {
-            clone.stack.push(node);
+    @Override public void resetOffset(int offset) {
+        for(int i = currentOffset - 1; i >= offset; i--) {
+            stack.push(new IncrementalCharacterNode(inputString.charAt(i)));
         }
-        clone.currentOffset = currentOffset;
-        return clone;
+        currentOffset = offset;
     }
 
     @Override public void leftBreakdown() {

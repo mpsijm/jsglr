@@ -16,7 +16,7 @@ import org.spoofax.jsglr2.stack.collections.IActiveStacks;
 import org.spoofax.jsglr2.stack.collections.IForActorStacks;
 
 public class RecoveryIncrementalParseState<InputStack extends IIncrementalInputStack, StackNode extends IStackNode>
-    extends AbstractRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint<InputStack, StackNode>>
+    extends AbstractRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint<StackNode>>
     implements IIncrementalParseState {
 
     private boolean multipleStates = false;
@@ -54,9 +54,7 @@ public class RecoveryIncrementalParseState<InputStack extends IIncrementalInputS
         this.multipleStates = multipleStates;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override public BacktrackChoicePoint<InputStack, StackNode> createBacktrackChoicePoint() {
-        // This cast is ugly, but there's no way around it (see AbstractRecoveryParseState)
-        return new BacktrackChoicePoint<>((InputStack) inputStack.clone(), activeStacks);
+    @Override public BacktrackChoicePoint<StackNode> createBacktrackChoicePoint() {
+        return new BacktrackChoicePoint<>(inputStack.offset(), activeStacks);
     }
 }

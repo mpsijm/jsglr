@@ -91,7 +91,7 @@ public abstract class BaseTestWithRecoverySdf3ParseTables extends BaseTestWithSd
         Derivation           extends IDerivation<ParseForest>,
         ParseNode            extends IParseNode<ParseForest, Derivation>,
         StackNode            extends IStackNode,
-        BacktrackChoicePoint extends IBacktrackChoicePoint<?, StackNode>,
+        BacktrackChoicePoint extends IBacktrackChoicePoint<StackNode>,
         ParseState           extends AbstractParseState<?, StackNode> & IRecoveryParseState<?, StackNode, BacktrackChoicePoint>>
     //@formatter:on
         extends ParserObserver<ParseForest, Derivation, ParseNode, StackNode, ParseState> {
@@ -108,11 +108,11 @@ public abstract class BaseTestWithRecoverySdf3ParseTables extends BaseTestWithSd
             iterations = new ArrayList<>();
         }
 
-        @Override public void recoveryBacktrackChoicePoint(int index, IBacktrackChoicePoint<?, StackNode> choicePoint) {
+        @Override public void recoveryBacktrackChoicePoint(int index, IBacktrackChoicePoint<StackNode> choicePoint) {
             if(index > backtrackChoicePoints.size() - 1)
-                backtrackChoicePoints.add(choicePoint.inputStack().offset());
+                backtrackChoicePoints.add(choicePoint.offset());
             else
-                backtrackChoicePoints.set(index, choicePoint.inputStack().offset());
+                backtrackChoicePoints.set(index, choicePoint.offset());
         }
 
         @Override public void startRecovery(ParseState parseState) {

@@ -125,7 +125,7 @@ public class ParserVariant {
    <ParseForest          extends IParseForest,
     StackNode            extends IStackNode,
     InputStack           extends IInputStack,
-    BacktrackChoicePoint extends IBacktrackChoicePoint<InputStack, StackNode>,
+    BacktrackChoicePoint extends IBacktrackChoicePoint<StackNode>,
     ParseState           extends AbstractParseState<InputStack, StackNode> & IRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint>>
 //@formatter:on
     IParser<? extends IParseForest>

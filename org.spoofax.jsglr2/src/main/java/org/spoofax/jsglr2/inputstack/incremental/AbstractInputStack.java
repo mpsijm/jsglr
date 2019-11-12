@@ -16,8 +16,6 @@ public abstract class AbstractInputStack implements IInputStack {
         this.fileName = fileName;
     }
 
-    @Override public abstract IInputStack clone();
-
     @Override public String inputString() {
         return inputString;
     }

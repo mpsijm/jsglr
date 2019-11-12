@@ -13,7 +13,7 @@ import org.spoofax.jsglr2.stack.collections.IActiveStacks;
 import org.spoofax.jsglr2.stack.collections.IForActorStacks;
 
 public class RecoveryParseState<InputStack extends IInputStack, StackNode extends IStackNode>
-    extends AbstractRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint<InputStack, StackNode>> {
+    extends AbstractRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint<StackNode>> {
 
     RecoveryParseState(InputStack inputStack, IActiveStacks<StackNode> activeStacks,
         IForActorStacks<StackNode> forActorStacks) {
@@ -40,9 +40,7 @@ public class RecoveryParseState<InputStack extends IInputStack, StackNode extend
         };
     }
 
-    @SuppressWarnings("unchecked")
-    @Override public BacktrackChoicePoint<InputStack, StackNode> createBacktrackChoicePoint() {
-        // This cast is ugly, but there's no way around it (see AbstractRecoveryParseState)
-        return new BacktrackChoicePoint<>((InputStack) inputStack.clone(), activeStacks);
+    @Override public BacktrackChoicePoint<StackNode> createBacktrackChoicePoint() {
+        return new BacktrackChoicePoint<>(inputStack.offset(), activeStacks);
     }
 }

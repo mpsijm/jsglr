@@ -14,6 +14,12 @@ public class LayoutSensitiveInputStack extends InputStack {
         super(inputString, fileName);
     }
 
+    @Override
+    public void resetOffset(int offset) {
+        super.resetOffset(offset);
+        // TODO reset currentLine and currentColumn based on skipped part of the input string
+    }
+
     public Position currentPosition() {
         return new Position(currentOffset, currentLine, currentColumn);
     }

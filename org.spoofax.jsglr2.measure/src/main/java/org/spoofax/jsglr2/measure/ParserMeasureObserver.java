@@ -202,7 +202,7 @@ public class ParserMeasureObserver
     }
 
     @Override public void recoveryBacktrackChoicePoint(int index,
-        IBacktrackChoicePoint<?, AbstractElkhoundStackNode<ParseForest>> backtrackChoicePoint) {
+        IBacktrackChoicePoint<AbstractElkhoundStackNode<ParseForest>> backtrackChoicePoint) {
     }
 
     @Override public void startRecovery(AbstractParseState<?, AbstractElkhoundStackNode<ParseForest>> parseState) {

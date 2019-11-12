@@ -12,7 +12,7 @@ public abstract class AbstractRecoveryParseState
 //@formatter:off
    <InputStack           extends IInputStack,
     StackNode            extends IStackNode,
-    BacktrackChoicePoint extends IBacktrackChoicePoint<InputStack, StackNode>>
+    BacktrackChoicePoint extends IBacktrackChoicePoint<StackNode>>
 //@formatter:on
     extends AbstractParseState<InputStack, StackNode>
     implements IRecoveryParseState<InputStack, StackNode, BacktrackChoicePoint> {
@@ -55,13 +55,8 @@ public abstract class AbstractRecoveryParseState
             return false;
     }
 
-    @SuppressWarnings("unchecked")
     protected void resetToBacktrackChoicePoint(BacktrackChoicePoint backtrackChoicePoint) {
-        // This cast is ugly, but there's no way around it.
-        // The subclasses of `IInputStack` specialize the return type of `clone` to be their own class,
-        // but this information cannot be stored in the type parameter `InputStack` of this class.
-        // As programmers, we assume that the backtrack choice points contain an input stack of the same type each time.
-        this.inputStack = (InputStack) backtrackChoicePoint.inputStack().clone();
+        this.inputStack.resetOffset(backtrackChoicePoint.offset());
 
         this.activeStacks.clear();
 

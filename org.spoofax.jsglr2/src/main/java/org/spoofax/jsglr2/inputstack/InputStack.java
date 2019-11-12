@@ -9,11 +9,10 @@ public class InputStack extends AbstractInputStack {
         super(inputString, fileName);
     }
 
-    @Override public InputStack clone() {
-        InputStack clone = new InputStack(inputString, fileName);
-        clone.currentChar = currentChar;
-        clone.currentOffset = currentOffset;
-        return clone;
+    @Override
+    public void resetOffset(int offset) {
+        currentOffset = offset;
+        currentChar = getChar(offset);
     }
 
     @Override public boolean hasNext() {

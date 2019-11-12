@@ -9,7 +9,7 @@ public interface IRecoveryParseState
 //@formatter:off
    <InputStack           extends IInputStack,
     StackNode            extends IStackNode,
-    BacktrackChoicePoint extends IBacktrackChoicePoint<InputStack, StackNode>>
+    BacktrackChoicePoint extends IBacktrackChoicePoint< StackNode>>
 //@formatter:on
 {
 
