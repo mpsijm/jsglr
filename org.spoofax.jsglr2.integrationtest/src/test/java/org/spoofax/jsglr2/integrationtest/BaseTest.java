@@ -1,5 +1,6 @@
 package org.spoofax.jsglr2.integrationtest;
 
+import static com.google.common.collect.Iterables.isEmpty;
 import static java.util.Collections.sort;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,9 +9,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -27,11 +26,14 @@ import org.spoofax.jsglr2.integration.IntegrationVariant;
 import org.spoofax.jsglr2.integration.ParseTableVariant;
 import org.spoofax.jsglr2.integration.WithParseTable;
 import org.spoofax.jsglr2.messages.Message;
+import org.spoofax.jsglr2.parseforest.IParseForest;
+import org.spoofax.jsglr2.parseforest.IParseNode;
 import org.spoofax.jsglr2.parseforest.ParseForestRepresentation;
 import org.spoofax.jsglr2.parser.IParser;
 import org.spoofax.jsglr2.parser.ParseException;
 import org.spoofax.jsglr2.parser.Position;
 import org.spoofax.jsglr2.parser.result.ParseResult;
+import org.spoofax.jsglr2.parser.result.ParseSuccess;
 import org.spoofax.jsglr2.util.AstUtilities;
 import org.spoofax.terms.TermFactory;
 import org.spoofax.terms.io.binary.TermReader;
@@ -74,7 +76,7 @@ public abstract class BaseTest implements WithParseTable {
             return variant.name() + "(parseTableOrigin:" + parseTableWithOrigin.origin + ")";
         }
 
-        IParser<?> parser() {
+        IParser<? extends IParseForest> parser() {
             return variant.parser.getParser(parseTableWithOrigin.parseTable);
         }
 
@@ -214,6 +216,89 @@ public abstract class BaseTest implements WithParseTable {
                     equalityByExpansions);
             }
         });
+    }
+
+    protected Stream<DynamicTest> testSubtreeReuse(String inputString1, String inputString2,
+        ParseNodeDescriptor... parseNodeDescriptors) {
+        return testPerVariant(getTestVariants(isIncrementalVariant), variant -> () -> {
+            @SuppressWarnings("unchecked") IParser<IParseForest> parser = (IParser<IParseForest>) variant.parser();
+            // ((IObservableParser<?, ?>) parser).observing()
+            // .attachObserver(new org.spoofax.jsglr2.parser.observing.ParserLogObserver<>());
+            ParseResult<IParseForest> parse1 = parser.parse(inputString1);
+            assertTrue(parse1.isSuccess(), "Parse 1 of " + inputString1 + " failed!");
+            IParseForest parseForest1 = ((ParseSuccess<?>) parse1).parseResult;
+            ParseResult<IParseForest> parse2 = parser.parse(inputString2, inputString1, parseForest1);
+            assertTrue(parse2.isSuccess(), "Parse 2 of " + inputString2 + " failed!");
+            IParseForest parseForest2 = ((ParseSuccess<?>) parse2).parseResult;
+
+            Map<IParseForest, IParseNode<?, ?>> cache = populateCache(parseForest1);
+            Map<IParseForest, Integer> offsets = calculateOffsets(parseForest1);
+            List<IParseNode<?, ?>> reused = checkReuse(cache, parseForest2);
+            assertEquals(parseNodeDescriptors.length, reused.size(),
+                "Length of reused nodes not equal! Reused: " + reused);
+            for(int i = 0; i < parseNodeDescriptors.length; i++) {
+                parseNodeDescriptors[i].assertSame(offsets.get(reused.get(i)), reused.get(i));
+            }
+        });
+    }
+
+    private Map<IParseForest, IParseNode<?, ?>> populateCache(IParseForest parseForest) {
+        Map<IParseForest, IParseNode<?, ?>> cache = new HashMap<>();
+        Queue<IParseForest> queue = new LinkedList<>();
+        queue.add(parseForest);
+        while(!queue.isEmpty()) {
+            IParseForest current = queue.poll();
+            if(current instanceof IParseNode) {
+                @SuppressWarnings("rawtypes") IParseNode parseNode = (IParseNode) current;
+                cache.put(current, parseNode);
+                if(!isEmpty(parseNode.getDerivations())) {
+                    queue.addAll(Arrays.asList(parseNode.getFirstDerivation().parseForests()));
+                }
+            }
+        }
+        return cache;
+    }
+
+    private Map<IParseForest, Integer> calculateOffsets(IParseForest parseForest) {
+        Map<IParseForest, Integer> offsets = new HashMap<>();
+        offsets.put(parseForest, 0);
+        Queue<IParseForest> queue = new LinkedList<>();
+        queue.add(parseForest);
+        while(!queue.isEmpty()) {
+            IParseForest current = queue.poll();
+            int offset = offsets.get(current);
+            if(current instanceof IParseNode) {
+                @SuppressWarnings("rawtypes") IParseNode parseNode = (IParseNode) current;
+                if(!isEmpty(parseNode.getDerivations())) {
+                    for(IParseForest child : parseNode.getFirstDerivation().parseForests()) {
+                        offsets.put(child, offset);
+                        offset += child.width();
+                        queue.add(child);
+                    }
+                }
+            }
+        }
+        return offsets;
+    }
+
+    private List<IParseNode<?, ?>> checkReuse(Map<IParseForest, IParseNode<?, ?>> cache, IParseForest parseForest) {
+        List<IParseNode<?, ?>> reused = new ArrayList<>();
+        Queue<IParseForest> queue = new LinkedList<>();
+        queue.add(parseForest);
+        while(!queue.isEmpty()) {
+            IParseForest current = queue.poll();
+            if(current instanceof IParseNode) {
+                @SuppressWarnings("rawtypes") IParseNode parseNode = (IParseNode) current;
+                if(cache.containsKey(current)) {
+                    reused.add(parseNode);
+                    continue;
+                }
+                if(!isEmpty(parseNode.getDerivations())) {
+                    queue.addAll(Arrays.asList(parseNode.getFirstDerivation().parseForests()));
+                }
+            }
+        }
+        return reused;
     }
 
     protected void assertEqualAST(String message, String expectedOutputAstString, IStrategoTerm actualOutputAst,

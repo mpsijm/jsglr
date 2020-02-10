@@ -88,4 +88,18 @@ public class LookaheadIncrementalTest extends BaseTestWithSdf3ParseTables {
         //@formatter:on
     }
 
+    @TestFactory public Stream<DynamicTest> reusingSubtreesNoLayout() {
+        String[] inputStrings = { "3[abx]", "3[abcx]" };
+        return Stream.concat(
+            testIncrementalSuccessByExpansions(inputStrings,
+                new String[] { "ThreeCharFollowRestricted(\"3[abx]\")", "ThreeCharPrefix(\"3[abcx]\")" }),
+
+            testSubtreeReuse(inputStrings[0], inputStrings[1]// , new int[][] { //
+            // { 0 }, // The empty layout before the 3 is reused
+            // { 1, 0, 0, 2, 0, 0 }, // The ]
+            // { 2 }, // The empty layout after the ] is reused
+            // }
+            ));
+    }
+
 }

@@ -208,7 +208,7 @@ public class JSGLR2Variant {
                     ActiveStacksRepresentation.standard(),
                     ForActorStacksRepresentation.standard(),
                     ParseForestRepresentation.Incremental,
-                    ParseForestConstruction.standard(),
+                    ParseForestConstruction.Full,
                     StackRepresentation.Hybrid,
                     Reducing.Incremental,
                     true),

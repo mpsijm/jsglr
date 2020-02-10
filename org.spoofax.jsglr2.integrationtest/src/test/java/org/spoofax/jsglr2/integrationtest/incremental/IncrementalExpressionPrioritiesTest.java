@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.spoofax.jsglr2.integrationtest.BaseTestWithSdf3ParseTables;
+import org.spoofax.jsglr2.integrationtest.ParseNodeDescriptor;
 
 public class IncrementalExpressionPrioritiesTest extends BaseTestWithSdf3ParseTables {
 
@@ -63,6 +64,21 @@ public class IncrementalExpressionPrioritiesTest extends BaseTestWithSdf3ParseTa
             }
         );
         //@formatter:on
+    }
+
+    @TestFactory public Stream<DynamicTest> reusingSubtreesNoLayout() {
+        String[] inputStrings = { "x+x+x", "x+x*x" };
+        return Stream.concat(
+            testIncrementalSuccessByExpansions(inputStrings,
+                new String[] { "Add(Add(Term,Term),Term)", "Add(Term,Mult(Term,Term))" }),
+            testSubtreeReuse(inputStrings[0], inputStrings[1], new ParseNodeDescriptor(0, 1, "Exp", "Term"),
+                new ParseNodeDescriptor(1, 1, "\"+\"", null)
+            // , new int[][] {
+            // x+x cannot be reused, as it is broken down
+            // { 0 }, // The empty layout before the first x is reused
+            // { 2 }, // The empty layout after the last x is reused
+            // }
+            ));
     }
 
 }
