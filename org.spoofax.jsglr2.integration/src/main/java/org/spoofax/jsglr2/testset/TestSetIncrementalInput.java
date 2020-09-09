@@ -13,11 +13,17 @@ public class TestSetIncrementalInput extends TestSetInput<String[], IncrementalS
     // Directory (if internal) in the org.spoofax.jsglr2.integration/src/main/resources/samples directory or (if not
     // internal) an absolute path, containing files %d.in
     public final String directory;
+    private final int startVersion;
 
-    public TestSetIncrementalInput(String directory, boolean internal) {
+    public TestSetIncrementalInput(String directory, boolean internal, int startVersion) {
         super(Type.INCREMENTAL, internal);
 
         this.directory = directory;
+        this.startVersion = startVersion;
+    }
+
+    public TestSetIncrementalInput(String directory, boolean internal) {
+        this(directory, internal, 0);
     }
 
     @Override protected IncrementalStringInput getInput(String filename, String[] input) {
@@ -26,7 +32,7 @@ public class TestSetIncrementalInput extends TestSetInput<String[], IncrementalS
 
     @Override public List<IncrementalStringInput> getInputs() throws IOException {
         List<String> inputs = new ArrayList<>();
-        for(int i = 0;; i++) {
+        for(int i = startVersion;; i++) {
             try {
                 inputs.add(getFileAsString(
                     directory + (directory.endsWith(File.separator) ? "" : File.separator) + i + ".in"));

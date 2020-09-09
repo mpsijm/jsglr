@@ -116,8 +116,7 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
         System.getProperty(TestSet.class.getCanonicalName() + ".javaInputPath",
             "/Users/Jasper/git/spoofax-releng/mb-rep/org.spoofax.terms");
 
-    private static final TestSetParseTableFromATerm JAVA_8_PARSE_TABLE =
-        new TestSetParseTableFromATerm("Java8_SLR", true);
+    private static final TestSetParseTableFromATerm JAVA_8_PARSE_TABLE = new TestSetParseTableFromATerm("Java8", true);
 
     public static TestSetWithParseTable<String, StringInput> java8 = new TestSetWithParseTable<>("java",
         JAVA_8_PARSE_TABLE, new TestSetMultipleInputs.StringInputSet(JAVA_8_BENCHMARK_INPUT_PATH_STRING, "java"));
@@ -128,11 +127,11 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
 
     public static TestSetWithParseTable<String[], IncrementalStringInput> java8Incremental =
         new TestSetWithParseTable<>("java8Incremental", JAVA_8_PARSE_TABLE,
-            new TestSetIncrementalInput("Java/AnyKeyboardViewBase.java/", true)); // "Java/TLRPC.java/"));
+            new TestSetIncrementalInput("Java/StringUtils.java/", true)); // "Java/TLRPC.java/")); AnyKeyboardViewBase
 
     public static final TestSetWithParseTable<String[], IncrementalStringInput> java8IncrementalGit =
         new TestSetWithParseTable<>("java8Incremental", JAVA_8_PARSE_TABLE,
-            new TestSetIncrementalGitInput("/home/maarten/git/tmp/mb-rep", "java", 50));
+            new TestSetIncrementalGitInput("/home/maarten/git/tmp/commons-lang", "java", 50));
 
 
     public static final TestSetWithParseTable<String[], IncrementalStringInput> ocamlIncrementalGit =
@@ -143,9 +142,18 @@ public class TestSet<ContentType, Input extends TestInput<ContentType>> {
     private static final String WEBDSL_BENCHMARK_INPUT_PATH_STRING = System.getProperty(
         TestSet.class.getCanonicalName() + ".webDSLInputPath", "/Users/Jasper/Desktop/jsglr2benchmarks/webdsl");
 
-    public static TestSetWithParseTable<String, StringInput> webDSL =
-        new TestSetWithParseTable<>("webdsl", new TestSetParseTableFromATerm("WebDSL", true),
-            new TestSetMultipleInputs.StringInputSet(WEBDSL_BENCHMARK_INPUT_PATH_STRING, "app"));
+    private static final TestSetParseTableFromATerm WEBDSL_PARSE_TABLE = new TestSetParseTableFromATerm("WebDSL", true);
+
+    public static TestSetWithParseTable<String, StringInput> webDSL = new TestSetWithParseTable<>("webDSL",
+        WEBDSL_PARSE_TABLE, new TestSetMultipleInputs.StringInputSet(WEBDSL_BENCHMARK_INPUT_PATH_STRING, "app"));
+
+    public static TestSetWithParseTable<String[], IncrementalStringInput> webDSLIncremental =
+        new TestSetWithParseTable<>("webDSLIncremental", WEBDSL_PARSE_TABLE,
+            new TestSetIncrementalInput("WebDSL/built-in.app-incremental/", true, 26));
+
+    public static final TestSetWithParseTable<String[], IncrementalStringInput> webDSLIncrementalGit =
+        new TestSetWithParseTable<>("webDSLIncrementalGit", JAVA_8_PARSE_TABLE,
+            new TestSetIncrementalGitInput("/home/maarten/git/tmp/yellowgrass", "app", 50));
 
     public static List<TestSetWithParseTable<String, StringInput>> all =
         Arrays.asList(lexical, sumAmbiguous, sumNonAmbiguous, greenMarl, java8, java8Unrolled, webDSL);

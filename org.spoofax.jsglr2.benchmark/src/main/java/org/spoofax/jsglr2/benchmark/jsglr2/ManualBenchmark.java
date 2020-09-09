@@ -84,20 +84,45 @@ public class ManualBenchmark {
         // JSGLR2Java8BenchmarkIncrementalParsing benchmark =
         // getIncrementalBenchmark(new JSGLR2Java8BenchmarkIncrementalParsing(), ParserType.Incremental);
 
-        JSGLR2Java8BenchmarkIncrementalParsingAndImploding benchmark =
-            getIncrementalBenchmark(new JSGLR2Java8BenchmarkIncrementalParsingAndImploding(), ParserType.Incremental);
+        // JSGLR2Java8BenchmarkIncrementalParsingAndImploding benchmark =
+        // getIncrementalBenchmark(new JSGLR2Java8BenchmarkIncrementalParsingAndImploding(), ParserType.Incremental);
 
         // JSGLR2OCamlGitBenchmarkIncrementalParsing benchmark = getIncrementalBenchmark(
         // new JSGLR2OCamlGitBenchmarkIncrementalParsing(), ParserType.Incremental);
 
-        // JSGLR2Java8GitBenchmarkIncrementalParsing benchmark = getIncrementalBenchmark(
-        // new JSGLR2Java8GitBenchmarkIncrementalParsing(), ParserType.Incremental);
+        // JSGLR2Java8GitBenchmarkIncrementalParsing benchmark =
+        // getIncrementalBenchmark(new JSGLR2Java8GitBenchmarkIncrementalParsing(), ParserType.Incremental);
 
         // JSGLR2SumNonAmbiguousBenchmarkIncrementalParsing benchmark = getIncrementalBenchmark(
         // new JSGLR2SumNonAmbiguousBenchmarkIncrementalParsing(), ParserType.Incremental, 4200);
 
         // JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding benchmark = getIncrementalBenchmark(
         // new JSGLR2SumNonAmbiguousBenchmarkIncrementalParsingAndImploding(), ParserType.Incremental, 420);
+
+        // JSGLR2WebDSLBenchmarkIncrementalParsing benchmark =
+        // getIncrementalBenchmark(new JSGLR2WebDSLBenchmarkIncrementalParsing(), ParserType.Incremental);
+
+        // JSGLR2WebDSLGitBenchmarkIncrementalParsing benchmark =
+        // getIncrementalBenchmark(new JSGLR2WebDSLGitBenchmarkIncrementalParsing(), ParserType.Incremental);
+
+        // JSGLR2WebDSLBenchmarkIncrementalParsingAndImploding benchmark =
+        // getIncrementalBenchmark(new JSGLR2WebDSLBenchmarkIncrementalParsingAndImploding(), ParserType.Incremental);
+
+        Map<String, String> a = new HashMap<>();
+        a.put("language", "java");
+        a.put("extension", "java");
+        a.put("parseTablePath",
+            "/home/maarten/git/thesis/spoofax-releng/jsglr/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
+        a.put("sourcePath",
+            "/home/maarten/git/thesis/spoofax-releng/jsglr/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-incremental");
+        a.put("iteration", "-1");
+        JSGLR2BenchmarkIncrementalExternal benchmark =
+            getIncrementalBenchmark(new JSGLR2BenchmarkIncrementalExternal(a), ParserType.Incremental);
+//        previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
+        a.put("iteration", "0");
+        previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
+        a.put("iteration", "1");
+        previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
 
         // noinspection unchecked,rawtypes
         // ((org.spoofax.jsglr2.parser.IObservableParser) benchmark.jsglr2.parser).observing()
@@ -107,7 +132,7 @@ public class ManualBenchmark {
 
         // doManualBenchmark(benchmark, true);
 
-        previewBenchmark(benchmark);
+        // previewBenchmark(benchmark);
     }
 
     private static void doManualBenchmark(JSGLR2BenchmarkIncrementalParsingAndImploding benchmark, boolean printReuse) {
@@ -174,39 +199,56 @@ public class ManualBenchmark {
     }
 
     private static void previewBenchmark(JSGLR2BenchmarkIncremental benchmark) {
-        try {
-            for(int j = 0; j < 2; j++) {
-                for(IncrementalStringInput input : benchmark.getInputs()) {
-                    System.out.println(input.fileName);
-                    long begin;
-                    for(int i = -2; i < input.content.length; i++) {
-                        benchmark.i = i;
-                        benchmark.setupCache();
-                        begin = System.currentTimeMillis();
-                        benchmark.action(new Blackhole(
-                            "Today's password is swordfish. I understand instantiating Blackholes directly is dangerous."),
-                            input);
-                        System.out.println(i + ": " + (System.currentTimeMillis() - begin) + " ms");
-                    }
+        for(int j = 0; j < 2; j++) {
+            for(IncrementalStringInput input : benchmark.getInputs()) {
+                System.out.println(input.fileName);
+                for(int i = -1; i < input.content.length; i++) {
+                    long l = previewBenchmarkIteration(benchmark, input, i);
+                    System.out.println(i + ": " + l + " ms");
                 }
             }
+        }
+    }
+
+    private static void previewBenchmarkExternal(JSGLR2BenchmarkIncremental benchmark, int i) {
+        for(int j = 0; j < 5; j++) {
+            for(IncrementalStringInput input : benchmark.getInputs()) {
+                System.out.println(input.fileName);
+                long l = previewBenchmarkIteration(benchmark, input, i);
+                System.out.println(i + ": " + l + " ms");
+            }
+        }
+    }
+
+    private static long previewBenchmarkIteration(JSGLR2BenchmarkIncremental benchmark, IncrementalStringInput input,
+        int i) {
+        long begin;
+        try {
+            benchmark.i = i;
+            benchmark.setupCache();
+            begin = System.currentTimeMillis();
+            benchmark.action(
+                new Blackhole(
+                    "Today's password is swordfish. I understand instantiating Blackholes directly is dangerous."),
+                input);
+            return System.currentTimeMillis() - begin;
         } catch(ParseException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 
     private static void printSizePerVersion(Iterable<IncrementalStringInput> inputs) {
         int n = inputs.iterator().next().content.length;
         IStringDiff diff = new JGitHistogramDiff();
-        System.out.println("Size (chars)\tRemoved\tAdded\tUpdates");
+        System.out.println("Version\tSize (chars)\tRemoved\tAdded\tUpdates");
         for(int i = 0; i < n; i++) {
             int finalI = i;
-            System.out.println(Iterables2.stream(inputs).mapToInt(input -> input.content[finalI].length()).sum()
-                + "\t"
+            System.out.println(i + "\t"
+                + Iterables2.stream(inputs).mapToInt(input -> input.content[finalI].length()).sum() + "\t"
                 + Iterables2.stream(inputs)
-                    .mapToInt(input -> diff
-                        .diff(finalI == 0 ? "" : input.content[finalI - 1], input.content[finalI]).stream()
-                        .mapToInt(EditorUpdate::deletedLength).sum())
+                    .mapToInt(input -> diff.diff(finalI == 0 ? "" : input.content[finalI - 1], input.content[finalI])
+                        .stream().mapToInt(EditorUpdate::deletedLength).sum())
                     .sum()
                 + "\t"
                 + Iterables2.stream(inputs)
@@ -231,9 +273,9 @@ public class ManualBenchmark {
         benchmark.n = n;
         benchmark.parserType = parserType;
 
+        benchmark.setupInputs();
         benchmark.parserSetup();
         benchmark.setupCache();
-        benchmark.setupInputs();
         return benchmark;
     }
 
@@ -247,9 +289,20 @@ public class ManualBenchmark {
         benchmark.n = n;
         benchmark.parserType = parserType;
 
+        benchmark.setupInputs();
         benchmark.parserSetup();
         benchmark.setupCache();
+        return benchmark;
+    }
+
+    private static <T extends JSGLR2BenchmarkIncrementalExternal> T getIncrementalBenchmark(T benchmark,
+        ParserType parserType) throws Exception {
+        benchmark.n = -1;
+        benchmark.parserType = parserType;
+
         benchmark.setupInputs();
+        benchmark.parserSetup();
+        benchmark.setupCache();
         return benchmark;
     }
 
