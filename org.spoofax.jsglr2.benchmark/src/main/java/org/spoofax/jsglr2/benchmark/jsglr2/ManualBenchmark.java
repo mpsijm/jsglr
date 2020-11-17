@@ -2,6 +2,7 @@ package org.spoofax.jsglr2.benchmark.jsglr2;
 
 import static org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2BenchmarkIncremental.ParserType;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -109,16 +110,24 @@ public class ManualBenchmark {
         // getIncrementalBenchmark(new JSGLR2WebDSLBenchmarkIncrementalParsingAndImploding(), ParserType.Incremental);
 
         Map<String, String> a = new HashMap<>();
-        a.put("language", "java");
-        a.put("extension", "java");
+        // a.put("language", "java");
+        // a.put("extension", "java");
+        // a.put("parseTablePath",
+        // "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
+        // a.put("sourcePath",
+        // "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-stringutils");
+        a.put("language", "sdf3");
+        a.put("extension", "sdf3");
         a.put("parseTablePath",
-            "/home/maarten/git/thesis/spoofax-releng/jsglr/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
+            "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/sdf3/org.metaborg.meta.lang.template/target/metaborg/sdf.tbl");
+        // a.put("sourcePath", "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/sdf3/incremental/dynsem");
         a.put("sourcePath",
-            "/home/maarten/git/thesis/spoofax-releng/jsglr/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-incremental");
+            "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/sdf3/incremental/nabl");
+
         a.put("iteration", "-1");
         JSGLR2BenchmarkIncrementalExternal benchmark =
             getIncrementalBenchmark(new JSGLR2BenchmarkIncrementalExternal(a), ParserType.Incremental);
-//        previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
+        // previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
         a.put("iteration", "0");
         previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
         a.put("iteration", "1");
@@ -211,12 +220,14 @@ public class ManualBenchmark {
     }
 
     private static void previewBenchmarkExternal(JSGLR2BenchmarkIncremental benchmark, int i) {
-        for(int j = 0; j < 5; j++) {
+        for(int j = 0; j < 10; j++) {
             for(IncrementalStringInput input : benchmark.getInputs()) {
                 System.out.println(input.fileName);
                 long l = previewBenchmarkIteration(benchmark, input, i);
                 System.out.println(i + ": " + l + " ms");
+                // break;
             }
+            // break;
         }
     }
 
@@ -226,16 +237,59 @@ public class ManualBenchmark {
         try {
             benchmark.i = i;
             benchmark.setupCache();
+            // printHeapSize();
+            // beginHeapMeasure();
             begin = System.currentTimeMillis();
             benchmark.action(
                 new Blackhole(
                     "Today's password is swordfish. I understand instantiating Blackholes directly is dangerous."),
                 input);
-            return System.currentTimeMillis() - begin;
+            long time = System.currentTimeMillis() - begin;
+            // endHeapMeasure(benchmark);
+            // printHeapSize();
+            return time;
         } catch(ParseException e) {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    private static long freeMemory, totalMemory;
+    private static final Runtime runtime = Runtime.getRuntime();
+
+    private static void beginHeapMeasure() {
+        System.gc();
+        freeMemory = runtime.freeMemory();
+        totalMemory = runtime.totalMemory();
+    }
+
+    private static void endHeapMeasure(JSGLR2BenchmarkIncremental benchmark) {
+        if(runtime.totalMemory() != totalMemory) {
+            System.out.println("Memory measurement failed because GC kicked in");
+            return;
+        }
+
+        long usedNew = totalMemory - runtime.freeMemory();
+        long usedOld = totalMemory - freeMemory;
+        System.gc();
+        long usedAfterGc = runtime.totalMemory() - runtime.freeMemory();
+
+        benchmark.prevParse.clear();
+        benchmark.prevCacheImpl.clear();
+        System.gc();
+        long usedAfterClear = runtime.totalMemory() - runtime.freeMemory();
+
+        System.out.println(new DecimalFormat("###,###").format(usedNew - usedOld));
+        System.out.println(new DecimalFormat("###,###").format(usedAfterGc - usedOld));
+        System.out.println(new DecimalFormat("###,###").format(usedAfterGc - usedAfterClear));
+    }
+
+    private static void printHeapSize() {
+        System.out.println("Free/current/max heap size: " + runtime.freeMemory() + "/" + runtime.totalMemory() + "/"
+            + runtime.maxMemory());
+        System.gc();
+        System.out.println("Free/current/max heap size: " + runtime.freeMemory() + "/" + runtime.totalMemory() + "/"
+            + runtime.maxMemory());
     }
 
     private static void printSizePerVersion(Iterable<IncrementalStringInput> inputs) {

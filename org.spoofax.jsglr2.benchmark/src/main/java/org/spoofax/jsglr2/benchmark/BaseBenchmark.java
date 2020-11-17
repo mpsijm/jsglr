@@ -10,7 +10,7 @@ import org.spoofax.jsglr2.testset.testinput.TestInput;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-public abstract class BaseBenchmark<ContentType, Input extends TestInput<ContentType>> {
+public class BaseBenchmark<ContentType, Input extends TestInput<ContentType>> {
 
     private TestSetReader<ContentType, Input> testSetReader;
     protected Iterable<Input> inputs;
