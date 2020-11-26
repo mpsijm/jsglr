@@ -1,6 +1,7 @@
 package org.spoofax.jsglr2.benchmark.jsglr2;
 
 import static org.spoofax.jsglr2.benchmark.jsglr2.JSGLR2BenchmarkIncremental.ParserType;
+import static org.spoofax.terms.util.TermUtils.isAppl;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -110,23 +111,32 @@ public class ManualBenchmark {
         // getIncrementalBenchmark(new JSGLR2WebDSLBenchmarkIncrementalParsingAndImploding(), ParserType.Incremental);
 
         Map<String, String> a = new HashMap<>();
-        // a.put("language", "java");
-        // a.put("extension", "java");
-        // a.put("parseTablePath",
-        // "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
-        // a.put("sourcePath",
-        // "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-stringutils");
-        a.put("language", "sdf3");
-        a.put("extension", "sdf3");
-        a.put("parseTablePath",
-            "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/sdf3/org.metaborg.meta.lang.template/target/metaborg/sdf.tbl");
-        // a.put("sourcePath", "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/sdf3/incremental/dynsem");
-        a.put("sourcePath",
-            "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/sdf3/incremental/nabl");
+
+//        a.put("language", "java");
+//        a.put("extension", "java");
+//        a.put("parseTablePath",
+//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/java/lang.java/target/metaborg/sdf.tbl");
+//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/languages/java/lang.java/target/metaborg/sdf.tbl");
+//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
+//            "/home/maarten/git/thesis/java-front/lang.java/target/metaborg/sdf.tbl");
+//        a.put("sourcePath",
+//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/java/incremental/apache-commons-lang-stringutils");
+//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/sources/java/incremental/apache-commons-lang-stringutils");
+//             "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201117-first-with-memory-benchmark/sources/java/incremental/apache-commons-lang-stringutils");
+////            "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-stringutils");
+
+         a.put("language", "sdf3");
+         a.put("extension", "sdf3");
+         a.put("parseTablePath",
+         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/sdf3/org.metaborg.meta.lang.template/target/metaborg/sdf.tbl");
+         // a.put("sourcePath", "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/sdf3/incremental/dynsem");
+         a.put("sourcePath",
+         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/sdf3/incremental/nabl");
 
         a.put("iteration", "-1");
         JSGLR2BenchmarkIncrementalExternal benchmark =
             getIncrementalBenchmark(new JSGLR2BenchmarkIncrementalExternal(a), ParserType.Incremental);
+         benchmark.implode = true;
         // previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
         a.put("iteration", "0");
         previewBenchmarkExternal(benchmark, Integer.parseInt(a.get("iteration")));
@@ -220,14 +230,12 @@ public class ManualBenchmark {
     }
 
     private static void previewBenchmarkExternal(JSGLR2BenchmarkIncremental benchmark, int i) {
-        for(int j = 0; j < 10; j++) {
+        for(int j = 0; j < 5; j++) {
             for(IncrementalStringInput input : benchmark.getInputs()) {
                 System.out.println(input.fileName);
                 long l = previewBenchmarkIteration(benchmark, input, i);
                 System.out.println(i + ": " + l + " ms");
-                // break;
             }
-            // break;
         }
     }
 
@@ -240,13 +248,17 @@ public class ManualBenchmark {
             // printHeapSize();
             // beginHeapMeasure();
             begin = System.currentTimeMillis();
-            benchmark.action(
+            // for(int j = 0; j < 100; j++) {
+            Object o = benchmark.action(
                 new Blackhole(
                     "Today's password is swordfish. I understand instantiating Blackholes directly is dangerous."),
                 input);
+            // }
             long time = System.currentTimeMillis() - begin;
             // endHeapMeasure(benchmark);
             // printHeapSize();
+            if(o instanceof IncrementalParseForest)
+                printStats((IncrementalParseForest) o);
             return time;
         } catch(ParseException e) {
             e.printStackTrace();
@@ -451,8 +463,7 @@ public class ManualBenchmark {
                 nodes++;
                 if(nodeSet.contains(t2))
                     reusedNodes++;
-                if(t2.getTermType() == IStrategoTerm.APPL
-                    && ((IStrategoAppl) t2).getConstructor().getName().equals("amb"))
+                if(isAppl(t2) && ((IStrategoAppl) t2).getConstructor().getName().equals("amb"))
                     ambs++;
                 IStrategoTerm[] sub2 = t2.getAllSubterms();
                 for(int i = sub2.length - 1; i >= 0; i--) {
@@ -553,6 +564,38 @@ public class ManualBenchmark {
         System.out.println("  Rebult: " + rebuilt);
         System.out.println("Leaves:   " + leaves);
         System.out.println("  Reused: " + reusedLeaves);
+        System.out.println();
+    }
+
+    private static void printStats(IncrementalParseForest parseForest) {
+        int nodes = 0, leaves = 0, ambs = 0, nondets = 0;
+
+        Stack<IParseForest> todo2 = new Stack<>();
+        todo2.add(parseForest);
+        while(!todo2.isEmpty()) {
+            IParseForest t2 = todo2.pop();
+            if(t2 instanceof IParseNode) {
+                nodes++;
+                IParseNode<?, ?> t2Node = (IParseNode<?, ?>) t2;
+                if(t2Node.isAmbiguous())
+                    ambs++;
+                if(!((IncrementalParseForest) t2Node).isReusable())
+                    nondets++;
+                if(!(t2 instanceof IncrementalSkippedNode)) {
+                    IParseForest[] sub2 = t2Node.getFirstDerivation().parseForests();
+                    for(int i = sub2.length - 1; i >= 0; i--) {
+                        todo2.add(sub2[i]);
+                    }
+                }
+            } else {
+                leaves++;
+            }
+        }
+
+        System.out.println("Ambigous: " + ambs);
+        System.out.println("Non-det.: " + nondets);
+        System.out.println("Internal: " + nodes);
+        System.out.println("Leaves:   " + leaves);
         System.out.println();
     }
 
