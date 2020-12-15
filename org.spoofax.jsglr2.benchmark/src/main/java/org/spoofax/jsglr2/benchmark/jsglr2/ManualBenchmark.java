@@ -112,26 +112,26 @@ public class ManualBenchmark {
 
         Map<String, String> a = new HashMap<>();
 
-//        a.put("language", "java");
-//        a.put("extension", "java");
-//        a.put("parseTablePath",
-//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/java/lang.java/target/metaborg/sdf.tbl");
-//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/languages/java/lang.java/target/metaborg/sdf.tbl");
-//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
-//            "/home/maarten/git/thesis/java-front/lang.java/target/metaborg/sdf.tbl");
-//        a.put("sourcePath",
-//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/java/incremental/apache-commons-lang-stringutils");
-//            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/sources/java/incremental/apache-commons-lang-stringutils");
-//             "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201117-first-with-memory-benchmark/sources/java/incremental/apache-commons-lang-stringutils");
-////            "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-stringutils");
+        a.put("language", "java");
+        a.put("extension", "java");
+        a.put("parseTablePath",
+            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/java/lang.java/target/metaborg/sdf.tbl");
+            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/languages/java/lang.java/target/metaborg/sdf.tbl");
+            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/languages/java/lang.java/target/metaborg/sdf.tbl");
+            "/home/maarten/git/thesis/java-front/lang.java/target/metaborg/sdf.tbl");
+        a.put("sourcePath",
+            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/java/incremental/apache-commons-lang-stringutils");
+            // "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201027-first-with-logs/sources/java/incremental/apache-commons-lang-stringutils");
+             "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201117-first-with-memory-benchmark/sources/java/incremental/apache-commons-lang-stringutils");
+//            "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/java/incremental/apache-commons-lang-stringutils");
 
-         a.put("language", "sdf3");
-         a.put("extension", "sdf3");
-         a.put("parseTablePath",
-         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/sdf3/org.metaborg.meta.lang.template/target/metaborg/sdf.tbl");
-         // a.put("sourcePath", "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/sdf3/incremental/dynsem");
-         a.put("sourcePath",
-         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/sdf3/incremental/nabl");
+//         a.put("language", "sdf3");
+//         a.put("extension", "sdf3");
+//         a.put("parseTablePath",
+//         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/languages/sdf3/org.metaborg.meta.lang.template/target/metaborg/sdf.tbl");
+//         // a.put("sourcePath", "/home/maarten/git/thesis/jsglr2evaluation/tmp/sources/sdf3/incremental/dynsem");
+//         a.put("sourcePath",
+//         "/home/maarten/git/thesis/jsglr2evaluation/tmp/.old/20201022-first-with-sdf3-sources/sources/sdf3/incremental/nabl");
 
         a.put("iteration", "-1");
         JSGLR2BenchmarkIncrementalExternal benchmark =
